@@ -1,4 +1,4 @@
-.// --- TRIP DATA FILE ---
+// --- TRIP DATA FILE ---
 // Version 9.0.2: Hakodate 7-Day In-Depth Itinerary (Syntax Corrected)
 
 const tripData = {
@@ -624,6 +624,7 @@ const tripData = {
         }
     }
 };
+
 
 
 
