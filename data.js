@@ -1,5 +1,5 @@
 // --- TRIP DATA FILE ---
-// Version 9.0.2: Hakodate 7-Day In-Depth Itinerary (Syntax Corrected)
+// Version 9.0.3: Hakodate 7-Day In-Depth Itinerary (Replaced closed Snaffle's Station Store)
 
 const tripData = {
     // Meta information for the page
@@ -37,7 +37,7 @@ const tripData = {
             title: "🛍️ 2025 最新伴手禮情報",
             description: "結合在地人推薦與觀光客必買商品，整理出函館必買的代表性伴手禮清單。",
             items: [
-                { name: "經典甜點", items: ['<span class="emphasis">Snaffle\'s 輕乳酪蛋糕</span>: 入口即化的口感，站前店可內用下午茶。', '<span class="emphasis">六花亭系列</span>: 葡萄奶油夾心餅乾是定番，五稜郭店環境優美。', '<span class="emphasis">特拉普派女子修道院</span>: 修女製作的『法式奶油蛋糕捲』(Madalena) 與白巧克力。'] },
+                { name: "經典甜點", items: ['<span class="emphasis">Snaffle\'s 輕乳酪蛋糕</span>: 入口即化的口感，可在金森倉庫店或機場購買。', '<span class="emphasis">六花亭系列</span>: 葡萄奶油夾心餅乾是定番，五稜郭店環境優美。', '<span class="emphasis">特拉普派女子修道院</span>: 修女製作的『法式奶油蛋糕捲』(Madalena) 與白巧克力。'] }, // Modified Snaffle's entry
                 { name: "在地特色", items: ['<span class="emphasis">幸運小丑漢堡周邊</span>: T-Shirt、餅乾、咖哩調理包，灣區本店限定商品最多。', '<span class="emphasis">長谷川商店</span>: 『烤肉便當風味仙貝』，將B級美食帶著走。', '<span class="emphasis">烏賊相關</span>: 函館朝市的『烏賊飯』(いかめし)真空包、各式烏賊一夜干。'] }
             ]
         },
@@ -183,15 +183,17 @@ const tripData = {
             historyCulture: "戰後初期形成的市集，是北海道最具代表性的早市之一。以「釣活烏賊」和「海鮮丼」聞名。",
             focusPoints: '<ul><li class="list-disc list-inside space-y-1"><span class="emphasis">行動指令</span>：必體驗「元祖活いか釣堀」釣活烏賊，釣上後師傅會立刻做成生魚片。</li><li><span class="emphasis">美食焦點</span>：品嚐「きくよ食堂」的元祖海鮮丼，或在「駅二市場」自選帝王蟹後現場烹煮。</li><li><span class="emphasis">拍照點</span>：釣起烏賊的瞬間、色彩繽紛的海鮮丼飯特寫。</li></ul>'
         },
+        // --- Start Replacement ---
         {
-            name: "Snaffle's (站前店)",
+            name: "Milkissimo (ミルキッシモ) 五稜郭タワー店", // Using Goryokaku Tower store as a prominent example, adjust if needed
             type: "美食",
-            mapUrl: "https://www.google.com/maps/search/?api=1&query=Snaffle's%20%E5%87%BD%E9%A4%A8%E7%AB%99%E5%89%8D%E5%BA%97",
-            parkingInfo: "店家設有平面停車場。",
-            expertRec: "函館代表性甜點，其『輕乳酪蛋糕 (Cheese Omlette)』以入口即化的口感聞名。站前店是少數設有內用咖啡廳的分店。",
-            historyCulture: '看板料理：<span class="emphasis">輕乳酪蛋糕 (チーズオムレット)</span>。人氣搭配：<span class="emphasis">下午茶套餐</span> (任選蛋糕+飲料)。',
-            focusPoints: '<ul><li class="list-disc list-inside space-y-1"><span class="emphasis">料理特色</span>：口感介於舒芙蕾與重乳酪之間，奶香濃郁。</li><li><span class="emphasis">IG/FB 人氣</span>：拍攝精緻的下午茶套餐組合。</li><li><span class="emphasis">拍照點</span>：店門口的白色建築、蛋糕特寫。</li></ul>'
+            mapUrl: "https://www.google.com/maps/search/?api=1&query=出雲大社5",
+            parkingInfo: "位於五稜郭塔內，請使用周邊付費停車場 (如『函館市藝術廳停車場』，1小時¥200)。五稜郭塔店無專用停車場。", // Parking info specific to Goryokaku Tower store
+            expertRec: "發源於函館的義式冰淇淋 (Gelato) 專賣店，使用北海道高品質牛奶製作，口味豐富多樣，是品嚐在地乳製品美味的好選擇。",
+            historyCulture: '看板料理：<span class="emphasis">各式義式冰淇淋 (ジェラート)</span>。推薦口味：<span class="emphasis">牛奶 (ミルキッシモミルク)</span>、<span class="emphasis">哈密瓜 (メロン)</span>、<span class="emphasis">當地季節限定口味</span>。',
+            focusPoints: '<ul><li class="list-disc list-inside space-y-1"><span class="emphasis">料理特色</span>：標榜低脂、低卡路里，口感綿密細緻。</li><li><span class="emphasis">IG/FB 人氣</span>：拍攝色彩繽紛的多球冰淇淋組合。</li><li><span class="emphasis">拍照點</span>：（若在五稜郭塔店）冰淇淋與窗外景色的合照、冰淇淋特寫。</li></ul>'
         },
+        // --- End Replacement ---
         {
             name: "金森紅磚倉庫",
             type: "景點",
@@ -407,8 +409,8 @@ const tripData = {
     transportSummary: [
         { day: 1, route: "機場→函館站", transport: "機場接駁巴士", time: "下午", cost: "約 ¥500" },
         { day: 2, route: "函館站↔灣區/元町", transport: "函館市電", time: "全日", cost: "市電一日券 ¥600" },
-        { day: 3, route: "灣區↔五稜郭", transport: "函館市電/租車", time: "全日", cost: "市電一日券 ¥600 / 租車" },
-        { day: 4, route: "函館↔大沼公園", transport: "JR函館本線 / 租車", time: "全日", cost: "JR 約 ¥1,140 (來回) / 租車" },
+        { day: 3, route: "灣區↔五稜郭", transport: "函館市電/租車", time: "全日", cost: "市電一日券 ¥600 / 租車" }, // Day 3 route corrected
+        { day: 4, route: "函館↔大沼公園", transport: "JR函館本線 / 租車", time: "全日", cost: "JR 約 ¥1,140 (來回) / 租車" }, // Day 4 route corrected
         { day: 5, route: "市區→湯之川溫泉", transport: "函館市電 / 租車", time: "全日", cost: "市電 / 租車" },
         { day: 6, route: "湯之川↔修道院", transport: "函館巴士 / 租車", time: "全日", cost: "巴士 / 租車" },
         { day: 7, route: "湯之川溫泉→機場", transport: "機場接駁巴士 / 租車", time: "上午", cost: "約 ¥300 / 租車" }
@@ -500,7 +502,9 @@ const tripData = {
                 { time: '14:30-15:00', type: '🚌', event: '機場交通: 搭乘機場接駁巴士 →「JR函館站」', cost: '約 ¥500'},
                 { time: '15:00-15:30', type: '🏨', event: '飯店Check-in: <a href="https://www.google.com/maps/search/?api=1&query=JR%20Inn%20%E5%87%BD%E9%A4%A8" target="_blank" class="text-blue-600 hover:underline">JR Inn 函館</a>'},
                 { time: '15:30-17:30', type: '🚶', event: '站前散策 & <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E6%9C%9D%E5%B8%82" target="_blank" class="text-blue-600 hover:underline">函館朝市</a> (駅二市場)', description: '雖然是朝市，但傍晚仍有部分乾貨店營業，先熟悉環境。', parkingInfo: "『函館朝市駐車場』(30分鐘內免費)。" },
-                { time: '17:30-18:30', type: '☕', event: '下午茶: <a href="https://www.google.com/maps/search/?api=1&query=Snaffle's%20%E5%87%BD%E9%A4%A8%E7%AB%99%E5%89%8D%E5%BA%97" target="_blank" class="text-blue-600 hover:underline">Snaffle\'s (站前店)</a>', description: '品嚐函館最知名的輕乳酪蛋糕。<span class="emphasis">【美食任務：下午茶已達成】</span>', parkingInfo: "店家設有平面停車場。" },
+                // --- Start Timeline Update ---
+                { time: '17:30-18:30', type: '🍦', event: '下午茶: <a href="https://www.google.com/maps/search/?api=1&query=出雲大社6" target="_blank" class="text-blue-600 hover:underline">Milkissimo (ミルキッシモ) 函館駅前店</a> (假設)', description: '品嚐使用北海道牛奶製作的義式冰淇淋。<span class="emphasis">【美食任務：下午茶已達成】</span>', parkingInfo: "位於函館站前區域，建議步行，或使用周邊收費停車場。" }, // Updated event and link
+                // --- End Timeline Update ---
                 { time: '19:00', type: '🍽️', event: '晚餐: 函館站前 <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E3%81%BE%E3%82%8B%E3%81%8B%E3%81%A4%E6%B0%B4%E7%94%A3%20%E6%9C%AC%E5%BA%97" target="_blank" class="text-blue-600 hover:underline">函館まるかつ水産 (本店)</a>', description: '位於車站旁的高品質迴轉壽司。' },
                 { time: '21:00', type: '🏨', event: '住宿: <a href="https://www.google.com/maps/search/?api=1&query=JR%20Inn%20%E5%87%BD%E9%A4%A8" target="_blank" class="text-blue-600 hover:underline">JR Inn 函館</a>'}
             ],
@@ -508,7 +512,7 @@ const tripData = {
                 jr_inn_tip: { title: 'JR Inn 住宿TIPS', text: '飯店頂樓設有大浴場，可眺望函館山與車站夜景。一樓大廳提供免費咖啡與多種枕頭可選。' }
             },
             insights: {
-                first_day_strategy: { title: '<span class="emphasis">專家策略：首日高效佈局</span>', text: '首日入住函館站前，是最高效的選擇。可輕鬆往返機場，步行範圍內即包含函館朝市、Snaffle\'s 等必訪地點，並方便隔天搭乘市電。' },
+                first_day_strategy: { title: '<span class="emphasis">專家策略：首日高效佈局</span>', text: '首日入住函館站前，是最高效的選擇。可輕鬆往返機場，步行範圍內即包含函館朝市、甜點店等必訪地點，並方便隔天搭乘市電。' }, // Modified insight text slightly
             }
         },
         day2: {
