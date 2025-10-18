@@ -1,5 +1,5 @@
 // --- TRIP DATA FILE ---
-// Version 9.0.1: Hakodate 7-Day In-Depth Itinerary (Map URLs Corrected)
+// Version 9.0.2: Hakodate 7-Day In-Depth Itinerary (Syntax Corrected)
 
 const tripData = {
     // Meta information for the page
@@ -37,8 +37,8 @@ const tripData = {
             title: "🛍️ 2025 最新伴手禮情報",
             description: "結合在地人推薦與觀光客必買商品，整理出函館必買的代表性伴手禮清單。",
             items: [
-                { name: "經典甜點", items: ["<span class=\"emphasis\">Snaffle's 輕乳酪蛋糕</span>: 入口即化的口感，站前店可內用下午茶。", "<span class=\"emphasis\">六花亭系列</span>: 葡萄奶油夾心餅乾是定番，五稜郭店環境優美。", "<span class=\"emphasis\">特拉普派女子修道院</span>: 修女製作的『法式奶油蛋糕捲』(Madalena) 與白巧克力。"] },
-                { name: "在地特色", items: ["<span class=\"emphasis\">幸運小丑漢堡周邊</span>: T-Shirt、餅乾、咖哩調理包，灣區本店限定商品最多。", "<span class=\"emphasis\">長谷川商店</span>: 『烤肉便當風味仙貝』，將B級美食帶著走。", "<span class=\"emphasis\">烏賊相關</span>: 函館朝市的『烏賊飯』(いかめし)真空包、各式烏賊一夜干。"] }
+                { name: "經典甜點", items: ['<span class="emphasis">Snaffle\'s 輕乳酪蛋糕</span>: 入口即化的口感，站前店可內用下午茶。', '<span class="emphasis">六花亭系列</span>: 葡萄奶油夾心餅乾是定番，五稜郭店環境優美。', '<span class="emphasis">特拉普派女子修道院</span>: 修女製作的『法式奶油蛋糕捲』(Madalena) 與白巧克力。'] },
+                { name: "在地特色", items: ['<span class="emphasis">幸運小丑漢堡周邊</span>: T-Shirt、餅乾、咖哩調理包，灣區本店限定商品最多。', '<span class="emphasis">長谷川商店</span>: 『烤肉便當風味仙貝』，將B級美食帶著走。', '<span class="emphasis">烏賊相關</span>: 函館朝市的『烏賊飯』(いかめし)真空包、各式烏賊一夜干。'] }
             ]
         },
         animePilgrimage: {
@@ -181,7 +181,7 @@ const tripData = {
             parkingInfo: "有專用付費停車場『函館朝市駐車場』(30分鐘內免費，之後每30分鐘¥100)。",
             expertRec: "函館的廚房，體驗在地活力的最佳起點。建議早晨7點至10點前往最為熱鬧，可品嚐最新鮮的海鮮丼。",
             historyCulture: "戰後初期形成的市集，是北海道最具代表性的早市之一。以「釣活烏賊」和「海鮮丼」聞名。",
-            focusPoints: `<ul class="list-disc list-inside space-y-1"><li><span class="emphasis">行動指令</span>：必體驗「元祖活いか釣堀」釣活烏賊，釣上後師傅會立刻做成生魚片。</li><li><span class="emphasis">美食焦點</span>：品嚐「きくよ食堂」的元祖海鮮丼，或在「駅二市場」自選帝王蟹後現場烹煮。</li><li><span class="emphasis">拍照點</span>：釣起烏賊的瞬間、色彩繽紛的海鮮丼飯特寫。</li></ul>`
+            focusPoints: '<ul><li class="list-disc list-inside space-y-1"><span class="emphasis">行動指令</span>：必體驗「元祖活いか釣堀」釣活烏賊，釣上後師傅會立刻做成生魚片。</li><li><span class="emphasis">美食焦點</span>：品嚐「きくよ食堂」的元祖海鮮丼，或在「駅二市場」自選帝王蟹後現場烹煮。</li><li><span class="emphasis">拍照點</span>：釣起烏賊的瞬間、色彩繽紛的海鮮丼飯特寫。</li></ul>'
         },
         {
             name: "Snaffle's (站前店)",
@@ -189,8 +189,8 @@ const tripData = {
             mapUrl: "https://www.google.com/maps/search/?api=1&query=Snaffle's%20%E5%87%BD%E9%A4%A8%E7%AB%99%E5%89%8D%E5%BA%97",
             parkingInfo: "店家設有平面停車場。",
             expertRec: "函館代表性甜點，其『輕乳酪蛋糕 (Cheese Omlette)』以入口即化的口感聞名。站前店是少數設有內用咖啡廳的分店。",
-            historyCulture: "看板料理：<span class=\"emphasis\">輕乳酪蛋糕 (チーズオムレット)</span>。人氣搭配：<span class=\"emphasis\">下午茶套餐</span> (任選蛋糕+飲料)。",
-            focusPoints: `<ul class="list-disc list-inside space-y-1"><li><span class="emphasis">料理特色</span>：口感介於舒芙蕾與重乳酪之間，奶香濃郁。</li><li><span class="emphasis">IG/FB 人氣</span>：拍攝精緻的下午茶套餐組合。</li><li><span class="emphasis">拍照點</span>：店門口的白色建築、蛋糕特寫。</li></ul>`
+            historyCulture: '看板料理：<span class="emphasis">輕乳酪蛋糕 (チーズオムレット)</span>。人氣搭配：<span class="emphasis">下午茶套餐</span> (任選蛋糕+飲料)。',
+            focusPoints: '<ul><li class="list-disc list-inside space-y-1"><span class="emphasis">料理特色</span>：口感介於舒芙蕾與重乳酪之間，奶香濃郁。</li><li><span class="emphasis">IG/FB 人氣</span>：拍攝精緻的下午茶套餐組合。</li><li><span class="emphasis">拍照點</span>：店門口的白色建築、蛋糕特寫。</li></ul>'
         },
         {
             name: "金森紅磚倉庫",
@@ -200,7 +200,7 @@ const tripData = {
             parkingInfo: "有合作的『TIMES24金森紅磚倉庫停車場』，1小時¥440，於設施內消費滿¥1,000可免費停車2小時。",
             expertRec: "函館灣區的地標，白天適合逛街購物，傍晚的夕陽與夜間點燈氛圍極佳。冬季的「聖誕夢幻節」是重頭戲。",
             historyCulture: "前身是明治時代的營業倉庫，現改建為複合式商場，保留了當時的紅磚建築風貌。",
-            focusPoints: `<ul class="list-disc list-inside space-y-1"><li><span class="emphasis">購物重點</span>：尋找Snaffle's、Petite Merveille等甜點伴手禮，以及函館限定的雜貨。</li><li><span class="emphasis">拍照點</span>：倉庫群與運河倒影、傍晚點燈後的浪漫氛圍、冬季的海上聖誕樹。</li></ul>`
+            focusPoints: '<ul><li class="list-disc list-inside space-y-1"><span class="emphasis">購物重點</span>：尋找Snaffle\'s、Petite Merveille等甜點伴手禮，以及函館限定的雜貨。</li><li><span class="emphasis">拍照點</span>：倉庫群與運河倒影、傍晚點燈後的浪漫氛圍、冬季的海上聖誕樹。</li></ul>'
         },
         {
             name: "幸運小丑漢堡 (灣區本店)",
@@ -208,8 +208,8 @@ const tripData = {
             mapUrl: "https://www.google.com/maps/search/?api=1&query=%E5%B9%B8%E9%81%8B%E5%B0%8F%E4%B8%91%E6%BC%A2%E5%A0%A1%20%E7%81%A3%E5%8D%80%E6%9C%AC%E5%BA%97",
             parkingInfo: "本店無專用停車場，請使用金森紅磚倉庫的『TIMES24』收費停車場。",
             expertRec: "函館限定的靈魂美食，被譽為「日本第一的在地漢堡」。每間分店主題不同，灣區本店是人氣最旺的打卡點。",
-            historyCulture: "看板料理：<span class=\"emphasis\">中華雞腿漢堡 (チャイニーズチキンバーガー)</span>。人氣搭配：<span class=\"emphasis\">幸運薯條</span> (淋上起司與肉醬)。",
-            focusPoints: `<ul class="list-disc list-inside space-y-1"><li><span class="emphasis">料理特色</span>：現點現做的炸雞腿裹上特製糖醋醬，風味獨特。</li><li><span class="emphasis">聖地巡禮</span>：這裡是《Love Live! Sunshine!!》的聖地之一。</li><li><span class="emphasis">拍照點</span>：店門口的華麗招牌、店內獨特的鞦韆座位。</li></ul>`
+            historyCulture: '看板料理：<span class="emphasis">中華雞腿漢堡 (チャイニーズチキンバーガー)</span>。人氣搭配：<span class="emphasis">幸運薯條</span> (淋上起司與肉醬)。',
+            focusPoints: '<ul><li class="list-disc list-inside space-y-1"><span class="emphasis">料理特色</span>：現點現做的炸雞腿裹上特製糖醋醬，風味獨特。</li><li><span class="emphasis">聖地巡禮</span>：這裡是《Love Live! Sunshine!!》的聖地之一。</li><li><span class="emphasis">拍照點</span>：店門口的華麗招牌、店內獨特的鞦韆座位。</li></ul>'
         },
         {
             name: "長谷川商店 (灣區店)",
@@ -217,8 +217,8 @@ const tripData = {
             mapUrl: "https://www.google.com/maps/search/?api=1&query=%E9%95%B7%E8%B0%B7%E5%B7%9D%E5%95%86%E5%BA%97%20%E7%81%A3%E5%8D%80%E5%BA%97",
             parkingInfo: "店家門口有少量免費停車位 (約4台)。",
             expertRec: "函館最強B級美食之一，本業是便利商店，但以現點現烤的『烤肉便當』聞名。是在地人與觀光客都熱愛的美味。",
-            historyCulture: "看板料理：<span class=\"emphasis\">烤肉便當 (やきとり弁当)</span>。雖然叫烤雞(Yakitori)，但使用的是豬五花肉，是函館的飲食特色。",
-            focusPoints: `<ul class="list-disc list-inside space-y-1"><li><span class="emphasis">點餐技巧</span>：選擇便當大小、肉串數量，以及口味（推薦鹽味或獨門醬汁）。</li><li><span class="emphasis">IG/FB 人氣</span>：拍攝師傅在吧台後方現烤肉串的畫面。</li><li><span class="emphasis">拍照點</span>：打開便當盒，拍攝鋪滿肉串的瞬間。</li></ul>`
+            historyCulture: '看板料理：<span class="emphasis">烤肉便當 (やきとり弁当)</span>。雖然叫烤雞(Yakitori)，但使用的是豬五花肉，是函館的飲食特色。',
+            focusPoints: '<ul><li class="list-disc list-inside space-y-1"><span class="emphasis">點餐技巧</span>：選擇便當大小、肉串數量，以及口味（推薦鹽味或獨門醬汁）。</li><li><span class="emphasis">IG/FB 人氣</span>：拍攝師傅在吧台後方現烤肉串的畫面。</li><li><span class="emphasis">拍照點</span>：打開便當盒，拍攝鋪滿肉串的瞬間。</li></ul>'
         },
         {
             name: "函館山纜車 & 夜景",
@@ -228,7 +228,7 @@ const tripData = {
             parkingInfo: "山麓站設有免費停車場 (約85輛)，但車位極少易滿。建議搭乘市電至「十字街」站後步行。",
             expertRec: "米其林三星景點，被譽為「世界三大夜景」。建議在日落前30分鐘抵達山頂，一次捕捉黃昏、魔幻時刻與夜景。",
             historyCulture: "函館山夜景的獨特之處在於其被津輕海峽和函館港包夾的「雙C」型海岸線。",
-            focusPoints: `<ul class="list-disc list-inside space-y-1"><li><span class="emphasis">行動指令</span>：務必提早上山卡位！最佳觀景點在展望台二樓戶外區的最右側。</li><li><span class="emphasis">裝備建議</span>：山上風大，即使是夏天也務必攜帶防風外套。</li><li><span class="emphasis">拍照點</span>：捕捉城市燈光剛點亮、天空尚有餘暉的「魔幻時刻」。</li></ul>`
+            focusPoints: '<ul><li class="list-disc list-inside space-y-1"><span class="emphasis">行動指令</span>：務必提早上山卡位！最佳觀景點在展望台二樓戶外區的最右側。</li><li><span class="emphasis">裝備建議</span>：山上風大，即使是夏天也務必攜帶防風外套。</li><li><span class="emphasis">拍照點</span>：捕捉城市燈光剛點亮、天空尚有餘暉的「魔幻時刻」。</li></ul>'
         },
         {
             name: "函太郎 (宇賀浦總店)",
@@ -236,8 +236,8 @@ const tripData = {
             mapUrl: "https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E5%A4%AA%E9%83%8E%20%E5%AE%87%E8%B3%80%E6%B5%A6%E7%B8%BD%E5%BA%97",
             parkingInfo: "設有大型免費專用停車場 (約60台)。",
             expertRec: "函館最強的連鎖迴轉壽司，品質媲美高級壽司店。宇賀浦總店擁有絕佳海景，可眺望津輕海峽。",
-            historyCulture: "看板料理：<span class=\"emphasis\">當日現撈地魚</span>、<span class=\"emphasis\">烏賊</span>、<span class=\"emphasis\">北寄貝</span>。",
-            focusPoints: `<ul class="list-disc list-inside space-y-1"><li><span class="emphasis">點餐技巧</span>：迴轉帶上的壽司以保鮮為主，強烈建議直接拿點菜單向師傅點餐，才能吃到現握的美味。</li><li><span class="emphasis">IG/FB 人氣</span>：拍攝窗外的海景與壽司的合照。</li><li><span class="emphasis">拍照點</span>：特寫當日限定的豪華壽司。</li></ul>`
+            historyCulture: '看板料理：<span class="emphasis">當日現撈地魚</span>、<span class="emphasis">烏賊</span>、<span class="emphasis">北寄貝</span>。',
+            focusPoints: '<ul><li class="list-disc list-inside space-y-1"><span class="emphasis">點餐技巧</span>：迴轉帶上的壽司以保鮮為主，強烈建議直接拿點菜單向師傅點餐，才能吃到現握的美味。</li><li><span class="emphasis">IG/FB 人氣</span>：拍攝窗外的海景與壽司的合照。</li><li><span class="emphasis">拍照點</span>：特寫當日限定的豪華壽司。</li></ul>'
         },
         {
             name: "元町教會群 & 八幡坂",
@@ -246,8 +246,8 @@ const tripData = {
             ticketInfo: "戶外參觀免費。舊函館區公會堂: 300日圓。",
             parkingInfo: "無專用停車場，請使用『函館市元町觀光停車場』(1小時內¥200，之後每30分鐘¥100)。",
             expertRec: "函館異國風情的代表區域。石板路、教會與洋房，充滿浪漫氛圍，適合花半天時間悠閒散步。",
-            historyCulture: "函館作為日本最早開放的港口之一，在此地遺留了大量 extranjero 人居所與宗教建築，形成獨特的和洋折衷景觀。",
-            focusPoints: `<ul class="list-disc list-inside space-y-1"><li><span class="emphasis">聖地巡禮</span>：<span class=\"emphasis\">八幡坂</span>是函館最知名的坂道，也是《Love Live!》與多部日劇的取景地。</li><li><span class="emphasis">參觀重點</span>：舊函館區公會堂（可體驗歐洲禮服）、函館正教會（俄羅斯風格）、元町天主堂（哥德式）。</li><li><span class="emphasis">拍照點</span>：從八幡坂頂端，由上往下拍攝直通港口的道路。</li></ul>`
+            historyCulture: "函館作為日本最早開放的港口之一，在此地遺留了大量外國人居所與宗教建築，形成獨特的和洋折衷景觀。",
+            focusPoints: '<ul><li class="list-disc list-inside space-y-1"><span class="emphasis">聖地巡禮</span>：<span class="emphasis">八幡坂</span>是函館最知名的坂道，也是《Love Live!》與多部日劇的取景地。</li><li><span class="emphasis">參觀重點</span>：舊函館區公會堂（可體驗歐洲禮服）、函館正教會（俄羅斯風格）、元町天主堂（哥德式）。</li><li><span class="emphasis">拍照點</span>：從八幡坂頂端，由上往下拍攝直通港口的道路。</li></ul>'
         },
         {
             name: "船魂神社",
@@ -257,7 +257,7 @@ const tripData = {
             parkingInfo: "無專用停車場，請使用『函館市元町觀光停車場』後步行前往。",
             expertRec: "北海道最古老的神社，位於元町散步路線的起點。是庇佑航海與交通安全的能量景點。",
             historyCulture: "主祀潮汐之神與大海之神，據傳源義經也曾在此受庇佑而平安登陸。",
-            focusPoints: `<ul class="list-disc list-inside space-y-1"><li><span class="emphasis">御守/御朱印</span>：必買獨特的『舵守』，適合祈求交通安全或人生方向。</li><li><span class="emphasis">拍照點</span>：神社入口的石梯、古樸的拜殿。</li></ul>`
+            focusPoints: '<ul><li class="list-disc list-inside space-y-1"><span class="emphasis">御守/御朱印</span>：必買獨特的『舵守』，適合祈求交通安全或人生方向。</li><li><span class="emphasis">拍照點</span>：神社入口的石梯、古樸的拜殿。</li></ul>'
         },
         {
             name: "とん悦 (Tonetsu)",
@@ -265,8 +265,8 @@ const tripData = {
             mapUrl: "https://www.google.com/maps/search/?api=1&query=%E3%81%A8%E3%82%93%E6%82%A6%20%E5%87%BD%E9%A4%A8",
             parkingInfo: "店家設有專用停車場。",
             expertRec: "函館在地的老字號炸豬排專門店，以其高品質的豬肉和酥脆的麵衣聞名，是在地人不想觀光客知道的隱藏名店。",
-            historyCulture: "看板料理：<span class=\"emphasis\">炸里肌豬排套餐 (ロースかつ定食)</span>、<span class=\"emphasis\">炸腰內肉豬排套餐 (ヒレかつ定食)</span>。",
-            focusPoints: `<ul class="list-disc list-inside space-y-1"><li><span class="emphasis">料理特色</span>：豬排麵衣酥脆不扎口，肉質多汁。高麗菜絲與白飯皆可免費續加。</li><li><span class="emphasis">IG/FB 人氣</span>：拍攝豬排金黃色的酥脆斷面。</li><li><span class="emphasis">拍照點</span>：豬排套餐全景、淋上醬汁的特寫。</li></ul>`
+            historyCulture: '看板料理：<span class="emphasis">炸里肌豬排套餐 (ロースかつ定食)</span>、<span class="emphasis">炸腰內肉豬排套餐 (ヒレかつ定食)</span>。',
+            focusPoints: '<ul><li class="list-disc list-inside space-y-1"><span class="emphasis">料理特色</span>：豬排麵衣酥脆不扎口，肉質多汁。高麗菜絲與白飯皆可免費續加。</li><li><span class="emphasis">IG/FB 人氣</span>：拍攝豬排金黃色的酥脆斷面。</li><li><span class="emphasis">拍照點</span>：豬排套餐全景、淋上醬汁的特寫。</li></ul>'
         },
         {
             name: "五稜郭塔 & 五稜郭公園",
@@ -276,7 +276,7 @@ const tripData = {
             parkingInfo: "塔樓無專用停車場，請使用周邊付費停車場 (如『函館市藝術廳停車場』，1小時¥200)。",
             expertRec: "函館的另一個地標。必登塔從空中俯瞰完整的「星型」要塞，春季賞櫻與冬季點燈（五稜星之夢）是其最美的時刻。",
             historyCulture: "日本100名城 (續)，是江戶幕府末期建造的西式堡壘，也是戊辰戰爭的最終戰場，土方歲三在此戰死。",
-            focusPoints: `<ul class="list-disc list-inside space-y-1"><li><span class="emphasis">聖地巡禮</span>：這裡是《黃金神威》粉絲必訪的聖地。</li><li><span class="emphasis">歷史探索</span>：可進入公園中央的「箱館奉行所」（需另付門票）了解當時的歷史。</li><li><span class="emphasis">拍照點</span>：從塔頂俯瞰完整的星型要塞、櫻花季時的粉色星型。</li></ul>`
+            focusPoints: '<ul><li class="list-disc list-inside space-y-1"><span class="emphasis">聖地巡禮</span>：這裡是《黃金神威》粉絲必訪的聖地。</li><li><span class="emphasis">歷史探索</span>：可進入公園中央的「箱館奉行所」（需另付門票）了解當時的歷史。</li><li><span class="emphasis">拍照點</span>：從塔頂俯瞰完整的星型要塞、櫻花季時的粉色星型。</li></ul>'
         },
         {
             name: "函館麵厨房 味彩 (本店)",
@@ -284,8 +284,8 @@ const tripData = {
             mapUrl: "https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E9%BA%B5%E5%BB%9A%E6%88%BF%20%E5%91%B3%E5%BD%A9%20%E6%9C%AC%E5%BA%97",
             parkingInfo: "店家設有專用停車場 (約7台)，若客滿請使用五稜郭塔周邊的收費停車場。",
             expertRec: "函館鹽味拉麵的代名詞，觀光客與在地人都會造訪的名店。本店位於五稜郭塔正對面，位置極佳。",
-            historyCulture: "看板料理：<span class=\"emphasis\">味彩鹽拉麵 (味彩塩拉麺)</span>。湯頭清澈，以昆布、雞骨、豬骨熬製，口感清爽不死鹹。",
-            focusPoints: `<ul class="list-disc list-inside space-y-1"><li><span class="emphasis">料理特色</span>：湯頭透明澄澈，是函館鹽味拉麵的王道代表。</li><li><span class="emphasis">IG/FB 人氣</span>：拍攝拉麵清澈的湯頭與麵條的特寫。</li><li><span class="emphasis">拍照點</span>：從店內窗邊座位拍攝五稜郭塔。</li></ul>`
+            historyCulture: '看板料理：<span class="emphasis">味彩鹽拉麵 (味彩塩拉麺)</span>。湯頭清澈，以昆布、雞骨、豬骨熬製，口感清爽不死鹹。',
+            focusPoints: '<ul><li class="list-disc list-inside space-y-1"><span class="emphasis">料理特色</span>：湯頭透明澄澈，是函館鹽味拉麵的王道代表。</li><li><span class="emphasis">IG/FB 人氣</span>：拍攝拉麵清澈的湯頭與麵條的特寫。</li><li><span class="emphasis">拍照點</span>：從店內窗邊座位拍攝五稜郭塔。</li></ul>'
         },
         {
             name: "Colz (コルツ)",
@@ -293,8 +293,8 @@ const tripData = {
             mapUrl: "https://www.google.com/maps/search/?api=1&query=Colz%20%E3%82%B3%E3%83%AB%E3%83%84%20%E5%87%BD%E9%A4%A8",
             parkingInfo: "店家後方設有專用停車場。",
             expertRec: "Tabelog高分名店，位於五稜郭附近，以使用北海道在地食材製作的義大利麵聞名，是在地人約會聚餐的口袋名單。",
-            historyCulture: "看板料理：<span class=\"emphasis\">當季食材義大利麵套餐 (パスタランチ)</span>。",
-            focusPoints: `<ul class="list-disc list-inside space-y-1"><li><span class="emphasis">料理特色</span>：午間套餐CP值極高，能品嚐到使用當地海鮮與蔬菜的精緻義麵。</li><li><span class="emphasis">IG/FB 人氣</span>：拍攝擺盤精緻的義大利麵。</li><li><span class="emphasis">拍照點</span>：店內時尚沉靜的氛圍、餐點特寫。</li></ul>`
+            historyCulture: '看板料理：<span class="emphasis">當季食材義大利麵套餐 (パスタランチ)</span>。',
+            focusPoints: '<ul><li class="list-disc list-inside space-y-1"><span class="emphasis">料理特色</span>：午間套餐CP值極高，能品嚐到使用當地海鮮與蔬菜的精緻義麵。</li><li><span class="emphasis">IG/FB 人氣</span>：拍攝擺盤精緻的義大利麵。</li><li><span class="emphasis">拍照點</span>：店內時尚沉靜的氛圍、餐點特寫。</li></ul>'
         },
         {
             name: "大沼國定公園",
@@ -304,7 +304,7 @@ const tripData = {
             parkingInfo: "JR大沼公園站對面有大型收費停車場 (約¥400/次)。",
             expertRec: "名列「新日本三景」的國家公園，是函館近郊最棒的自然景點。湖光山色映襯著駒岳火山，景緻壯麗。",
             historyCulture: "由駒岳火山噴發形成的湖泊，湖中有126個小島，由18座橋梁連接，形成獨特的景觀。",
-            focusPoints: `<ul class="list-disc list-inside space-y-1"><li><span class="emphasis">行動指令</span>：建議租借<span class=\"emphasis\">腳踏車</span>環湖一圈（約14公里，需1.5小時），或搭乘<span class=\"emphasis\">遊覽船</span>穿梭於島嶼間。</li><li><span class="emphasis">美食推薦</span>：必吃「沼之家」的醬油與芝麻雙色糰子。</li><li><span class="emphasis">拍照點</span>：湖畔木棧道、駒岳火山與湖面的倒影。</li></ul>`
+            focusPoints: '<ul><li class="list-disc list-inside space-y-1"><span class="emphasis">行動指令</span>：建議租借<span class="emphasis">腳踏車</span>環湖一圈（約14公里，需1.5小時），或搭乘<span class="emphasis">遊覽船</span>穿梭於島嶼間。</li><li><span class="emphasis">美食推薦</span>：必吃「沼之家」的醬油與芝麻雙色糰子。</li><li><span class="emphasis">拍照點</span>：湖畔木棧道、駒岳火山與湖面的倒影。</li></ul>'
         },
         {
             name: "炭火燒肉 泉味亭",
@@ -312,8 +312,8 @@ const tripData = {
             mapUrl: "https://www.google.com/maps/search/?api=1&query=%E7%82%AD%E7%81%AB%E7%87%92%E8%82%89%20%E6%B3%89%E5%91%B3%E4%BA%AD%20%E5%87%BD%E9%A4%A8",
             parkingInfo: "店家設有專屬停車場。",
             expertRec: "位於五稜郭區域的熟成和牛專門店，是在地人推薦的高品質燒肉店，適合旅程中安排一頓豪華的燒肉大餐。",
-            historyCulture: "看板料理：<span class="emphasis">熟成和牛拼盤</span>、<span class="emphasis">松阪牛</span>。",
-            focusPoints: `<ul class="list-disc list-inside space-y-1"><li><span class="emphasis">料理特色</span>：提供高品質的熟成肉品，油花分布均勻，入口即化。</li><li><span class="emphasis">IG/FB 人氣</span>：拍攝和牛美麗的油花紋路。</li><li><span class="emphasis">拍照點</span>：爐火上燒烤和牛的特寫。</li></ul>`
+            historyCulture: '看板料理：<span class="emphasis">熟成和牛拼盤</span>、<span class="emphasis">松阪牛</span>。',
+            focusPoints: '<ul><li class="list-disc list-inside space-y-1"><span class="emphasis">料理特色</span>：提供高品質的熟成肉品，油花分布均勻，入口即化。</li><li><span class="emphasis">IG/FB 人氣</span>：拍攝和牛美麗的油花紋路。</li><li><span class="emphasis">拍照點</span>：爐火上燒烤和牛的特寫。</li></ul>'
         },
         {
             name: "湯倉神社",
@@ -322,8 +322,8 @@ const tripData = {
             ticketInfo: "免費參拜",
             parkingInfo: "設有大型免費專用停車場 (約80台)。",
             expertRec: "湯之川溫泉的守護神，也是溫泉的發源地。神社雖小但五臟俱全，充滿特色，是溫泉區必訪的能量景點。",
-            historyCulture: "主祀溫泉之神與醫藥之神，神社內的「神兔」據說撫摸後可以治癒疾病。",
-            focusPoints: `<ul class="list-disc list-inside space-y-1"><li><span class="emphasis">御守/御朱印</span>：必求『御神緣御守』（可選『健』、『愛』、『美』等漢字）與『大丈夫御守』。</li><li><span class="emphasis">趣味體驗</span>：挑戰函館限定的<span class=\"emphasis\">『釣烏賊籤詩』(いかみくじ)</span>。</li><li><span class="emphasis">拍照點</span>：釣起烏賊籤詩的瞬間、可愛的神兔雕像。</li></ul>`
+            historyCulture: '主祀溫泉之神與醫藥之神，神社內的「神兔」據說撫摸後可以治癒疾病。',
+            focusPoints: '<ul><li class="list-disc list-inside space-y-1"><span class="emphasis">御守/御朱印</span>：必求『御神緣御守』（可選『健』、『愛』、『美』等漢字）與『大丈夫御守』。</li><li><span class="emphasis">趣味體驗</span>：挑戰函館限定的<span class="emphasis">『釣烏賊籤詩』(いかみくじ)</span>。</li><li><span class="emphasis">拍照點</span>：釣起烏賊籤詩的瞬間、可愛的神兔雕像。</li></ul>'
         },
         {
             name: "函館市熱帶植物園",
@@ -333,7 +333,7 @@ const tripData = {
             parkingInfo: "設有免費停車場。",
             expertRec: "冬季限定（12月至5月）的「猴子泡湯」是這裡的最大亮點，看著日本獼猴一臉享受地泡在溫泉中，非常療癒。",
             historyCulture: "除了猴子山，園區內也有大型溫室，種植了多種熱帶植物。",
-            focusPoints: `<ul class="list-disc list-inside space-y-1"><li><span class="emphasis">參觀重點</span>：冬季限定的猴子泡湯。</li><li><span class="emphasis">拍照點</span>：拍攝猴子泡湯時的各種逗趣表情。</li></ul>`
+            focusPoints: '<ul><li class="list-disc list-inside space-y-1"><span class="emphasis">參觀重點</span>：冬季限定的猴子泡湯。</li><li><span class="emphasis">拍照點</span>：拍攝猴子泡湯時的各種逗趣表情。</li></ul>'
         },
         {
             name: "ガスト (Gusto) 函館鍛治店",
@@ -341,8 +341,8 @@ const tripData = {
             mapUrl: "https://www.google.com/maps/search/?api=1&query=%E3%82%AC%E3%82%B9%E3%83%88%20%E5%87%BD%E9%A4%A8%E9%8D%9B%E5%86%B6%E5%BA%97",
             parkingInfo: "設有專用停車場。",
             expertRec: "日本連鎖家庭餐廳的代表，提供平價多樣的日式、西式餐點，是體驗在地日常飲食文化的好地方。",
-            historyCulture: "看板料理：<span class=\"emphasis\">起司IN漢堡排 (チーズINハンバーグ)</span>、<span class=\"emphasis\">飲料吧 (ドリンクバー)</span>。",
-            focusPoints: `<ul class="list-disc list-inside space-y-1"><li><span class="emphasis">料理特色</span>：菜單豐富，價格實惠，飲料吧可無限暢飲。</li><li><span class="emphasis">IG/FB 人氣</span>：拍攝切開漢堡排後流出起司的瞬間。</li><li><span class="emphasis">拍照點</span>：豐盛的餐點組合。</li></ul>`
+            historyCulture: '看板料理：<span class="emphasis">起司IN漢堡排 (チーズINハンバーグ)</span>、<span class="emphasis">飲料吧 (ドリンクバー)</span>。',
+            focusPoints: '<ul><li class="list-disc list-inside space-y-1"><span class="emphasis">料理特色</span>：菜單豐富，價格實惠，飲料吧可無限暢飲。</li><li><span class="emphasis">IG/FB 人氣</span>：拍攝切開漢堡排後流出起司的瞬間。</li><li><span class="emphasis">拍照點</span>：豐盛的餐點組合。</li></ul>'
         },
         {
             name: "特拉普派女子修道院",
@@ -351,8 +351,8 @@ const tripData = {
             ticketInfo: "庭園免費參觀。資料館: 200日圓。",
             parkingInfo: "修道院對面的「市民之森」設有收費停車場 (一般小客車 ¥200/次)。",
             expertRec: "日本第一座女子修道院，建築風格莊嚴美麗。院內販售的修女手作甜點與冰淇淋非常有名。",
-            historyCulture: "明治31年（1898年）由法國派遣的八位修女所創立，至今仍有修女在此過著祈禱與勞動的生活。",
-            focusPoints: `<ul class="list-disc list-inside space-y-1"><li><span class="emphasis">必買伴手禮</span>：修女手作的『法式奶油蛋糕捲』(Madalena) 與白巧克力。</li><li><span class="emphasis">美食推薦</span>：務必品嚐停車場旁「市民之森」販賣的<span class=\"emphasis\">『牛奶霜淇淋』</span>，號稱函館第一。</li><li><span class="emphasis">拍照點</span>：修道院本館的紅磚建築、聖米迦勒像、聖母瑪利亞像。</li></ul>`
+            historyCulture: '明治31年（1898年）由法國派遣的八位修女所創立，至今仍有修女在此過著祈禱與勞動的生活。',
+            focusPoints: '<ul><li class="list-disc list-inside space-y-1"><span class="emphasis">必買伴手禮</span>：修女手作的『法式奶油蛋糕捲』(Madalena) 與白巧克力。</li><li><span class="emphasis">美食推薦</span>：務必品嚐停車場旁「市民之森」販賣的<span class="emphasis">『牛奶霜淇淋』</span>，號稱函館第一。</li><li><span class="emphasis">拍照點</span>：修道院本館的紅磚建築、聖米迦勒像、聖母瑪利亞像。</li></ul>'
         }
     ],
 
@@ -398,8 +398,7 @@ const tripData = {
             "類型": "市電一日券 (¥600) 或 市電・巴士共通一日券 (¥1,000)",
             "啟用日期": "視每日行程彈性購買",
         },
-        description: `<p><span class="emphasis">票券價值解析：</span>由於本次行程以函館市區為核心，JR Pass 並不適用。交通主力將是函館市電與巴士。若單日搭乘市電超過3次，購買「市電一日券」即回本。若行程包含特拉普派修道院等巴士才能抵達的郊區，則可考慮「市電・巴士共通一日券」。</p>
-                      <p class="text-sm text-red-600 mt-2"><span class="emphasis">重要提醒:</span> 大沼公園需額外購買 JR 車票或使用租車。</p>`
+        description: '<p><span class="emphasis">票券價值解析：</span>由於本次行程以函館市區為核心，JR Pass 並不適用。交通主力將是函館市電與巴士。若單日搭乘市電超過3次，購買「市電一日券」即回本。若行程包含特拉普派修道院等巴士才能抵達的郊區，則可考慮「市電・巴士共通一日券」。</p><p class="text-sm text-red-600 mt-2"><span class="emphasis">重要提醒:</span> 大沼公園需額外購買 JR 車票或使用租車。</p>'
     },
 
     transportPassAnalysis: null,
@@ -473,7 +472,7 @@ const tripData = {
         },
         {
             title: "神社參拜",
-            content: "進入鳥居前先鞠躬。在「手水舍」洗手漱口。參拜時遵循「二拜二拍手一拜」為基本。"
+            content: '進入鳥居前先鞠躬。在「手水舍」洗手漱口。參拜時遵循「二拜二拍手一拜」為基本。'
         }
     ],
 
@@ -612,8 +611,7 @@ const tripData = {
             title: '歸鄉・帶著北國的回憶', date: 'Day 7', location: '湯之川溫泉 → 函館機場', timeAnalysis: { travel: 1.0, activity: 1.0 },
             timeline: [
                 { time: '09:00', type: '🏨', event: '早餐 & 飯店Check-out' },
-                { time: '09:30-10:30', type: '🛍️', event: '最後採買: (若租車) <a href="https"
-://www.google.com/maps/search/?api=1&query=MEGA%E3%83%89%E3%83%B3%E3%82%AD%E3%83%9B%E3%83%BC%E3%83%86%20%E5%87%BD%E9%A4%A8%E5%BA%97" target="_blank" class="text-blue-600 hover:underline">MEGA唐吉訶德 函館店</a>', description: '進行最後的藥妝與伴手禮補給。', parkingInfo: "設有大型免費停車場。" },
+                { time: '09:30-10:30', type: '🛍️', event: '最後採買: (若租車) <a href="https://googleusercontent.com/maps.google.com/113" target="_blank" class="text-blue-600 hover:underline">MEGA唐吉訶德 函館店</a>', description: '進行最後的藥妝與伴手禮補給。', parkingInfo: "設有大型免費停車場。" },
                 { time: '11:00', type: '🚗', event: '租車歸還 (若有)' },
                 { time: '11:30', type: '🚌', event: '前往 函館機場 (HKD)', cost: '約 ¥300'},
                 { time: '14:00', type: '✈️', event: '航班起飛: HKD → TPE' }
