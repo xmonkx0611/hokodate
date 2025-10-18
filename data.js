@@ -499,8 +499,8 @@ const tripData = {
                 { time: '14:00', type: '✈️', event: '抵達 函館機場 (HKD)' },
                 { time: '14:30-15:00', type: '🚌', event: '機場交通: 搭乘機場接駁巴士 →「JR函館站」', cost: '約 ¥500'},
                 { time: '15:00-15:30', type: '🏨', event: '飯店Check-in: <a href="https://www.google.com/maps/search/?api=1&query=JR%20Inn%20%E5%87%BD%E9%A4%A8" target="_blank" class="text-blue-600 hover:underline">JR Inn 函館</a>'},
-                { time: '15:30-17:30', type: '🚶', event: '站前散策 & <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E6%9C%9D%E5%B8%82" target="_blank" class="text-blue-600 hover:underline">函館朝市</a> (駅二市場)', description: '雖然是朝市，但傍晚仍有部分乾貨店營業，先熟悉環境。', parkingInfo: "『函館朝市駐車場』(30分鐘內免費)。" },
-                { time: '17:30-18:30', type: '☕', event: '下午茶: <a href="https://www.google.com/maps/search/?api=1&query=Snaffle's%20%E5%87%BD%E9%A4%A8%E7%AB%99%E5%89%8D%E5%BA%97" target="_blank" class="text-blue-600 hover:underline">Snaffle\'s (站前店)</a>', description: '品嚐函館最知名的輕乳酪蛋糕。<span class="emphasis">【美食任務：下午茶已達成】</span>', parkingInfo: "店家設有平面停車場。" },
+                { time: '15:30-17:30', type: '🚶', event: '站前散策 & <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E6%9C%9D%E5%B8%82" target="_blank" class="text-blue-600 hover:underline">函館朝市</a> (駅二市場)', description: '雖然是朝市，但傍晚仍有部分乾貨店營業，先熟悉環境。', parkingInfo: "『函館朝市駐車場』(30分鐘內免費)。' },
+                { time: '17:30-18:30', type: '☕', event: '下午茶: <a href="https://www.google.com/maps/search/?api=1&query=Snaffle's%20%E5%87%BD%E9%A4%A8%E7%AB%99%E5%89%8D%E5%BA%97" target="_blank" class="text-blue-600 hover:underline">Snaffle\'s (站前店)</a>', description: '品嚐函館最知名的輕乳酪蛋糕。<span class="emphasis">【美食任務：下午茶已達成】</span>', parkingInfo: "店家設有平面停車場。' },
                 { time: '19:00', type: '🍽️', event: '晚餐: 函館站前 <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E3%81%BE%E3%82%8B%E3%81%8B%E3%81%A4%E6%B0%B4%E7%94%A3%20%E6%9C%AC%E5%BA%97" target="_blank" class="text-blue-600 hover:underline">函館まるかつ水産 (本店)</a>', description: '位於車站旁的高品質迴轉壽司。' },
                 { time: '21:00', type: '🏨', event: '住宿: <a href="https://www.google.com/maps/search/?api=1&query=JR%20Inn%20%E5%87%BD%E9%A4%A8" target="_blank" class="text-blue-600 hover:underline">JR Inn 函館</a>'}
             ],
@@ -625,3 +625,4 @@ const tripData = {
         }
     }
 };
+
