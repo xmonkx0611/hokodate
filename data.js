@@ -1,5 +1,5 @@
 // --- TRIP DATA FILE ---
-// Version 9.1.1: Hakodate 7-Day In-Depth Itinerary (Added specialTags field for modular rendering)
+// Version 9.1.2: Hakodate 7-Day In-Depth Itinerary (Enriched dailyData with highlights & notes)
 
 const tripData = {
     // Meta information for the page
@@ -679,7 +679,7 @@ const tripData = {
         }
     },
 
-    // Daily Data --- ADDED specialTags where applicable ---
+    // --- Daily Data: Enriched with new fields ---
     dailyData: {
         day1: { // Dec 1st (Fri)
             title: '序章・北國之港・灣區初探', date: 'Day 1 (12/01 週五)', location: '函館機場 → 灣區', timeAnalysis: { travel: 1.5, activity: 4.0 },
@@ -687,13 +687,36 @@ const tripData = {
                 { time: '14:00', type: '✈️', event: '抵達 函館機場 (HKD)' },
                 { time: '14:30-15:00', type: '🚌', event: '機場交通: 搭乘機場接駁巴士 →「JR函館站」', cost: '約 ¥700'},
                 { time: '15:00-15:30', type: '🚕', event: '從JR函館站搭乘計程車或市電(函館駅前→魚市場通)前往飯店'},
-                { time: '15:30-16:00', type: '🏨', event: '飯店Check-in: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank" class="text-blue-600 hover:underline">ラビスタ函館ベイ</a>'},
+                { time: '15:30-16:00', type: '🏨', event: '飯店Check-in: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank">ラビスタ函館ベイ</a>'},
                 { time: '16:00', type: '☕', event: '午餐: (視班機時間決定)'},
-                { time: '16:00-17:30', type: '🚶', event: '飯店周邊熟悉 & <a href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E6%A3%AE%E7%B4%85%E7%A3%9A%E5%80%89%E5%BA%AB" target="_blank" class="text-blue-600 hover:underline">金森紅磚倉庫</a> 初步探索', description: '飯店就在倉庫旁，先熟悉環境。', parkingInfo: "『TIMES24』停車場。", specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門打卡點' } ] },
+                { time: '16:00-17:30', type: '🚶', event: '飯店周邊熟悉 & <a href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E6%A3%AE%E7%B4%85%E7%A3%9A%E5%80%89%E5%BA%AB" target="_blank">金森紅磚倉庫</a> 初步探索', description: '飯店就在倉庫旁，先熟悉環境。', parkingInfo: "『TIMES24』停車場。", specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門打卡點' } ] },
                 { time: '17:30-18:00', type: '☕', event: '下午茶: 飯店內或附近咖啡廳 (飯店提供手沖咖啡設備)' },
-                { time: '18:00', type: '🎄', event: '冬季限定: 觀賞 <a href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E6%A3%AE%E7%B4%85%E7%A3%9A%E5%80%89%E5%BA%AB" target="_blank" class="text-blue-600 hover:underline">金森倉庫</a> 聖誕幻想點燈/煙火 (18:00開始)', stay: '約 1 小時', specialTags: [ { type: 'event', text: '🎄 冬季活動: 函館聖誕幻想' } ] },
-                { time: '19:30', type: '🍽️', event: '晚餐: <a href="https://www.google.com/maps/search/?api=1&query=%E5%B9%B8%E9%81%8B%E5%B0%8F%E4%B8%91%E6%BC%A2%E5%A0%A1%20%E7%81%A3%E5%8D%80%E6%9C%AC%E5%BA%97" target="_blank" class="text-blue-600 hover:underline">幸運小丑漢堡 (灣區本店)</a>', description: '體驗函館限定漢堡。(可用特級套票4點)', specialTags: [ { type: 'pilgrimage', text: '🎥 聖地巡禮: Love Live! Sunshine!! 場景' }, { type: 'ig_hotspot', text: '📸 IG 熱門餐廳' } ] },
-                { time: '21:00', type: '🏨', event: '住宿: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank" class="text-blue-600 hover:underline">ラビスタ函館ベイ</a>', description: '享受飯店頂樓天然溫泉，遠眺函館山。 泡湯後有免費冰棒。'}
+                { time: '18:00', type: '🎄', event: '冬季限定: 觀賞 <a href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E6%A3%AE%E7%B4%85%E7%A3%9A%E5%80%89%E5%BA%AB" target="_blank">金森倉庫</a> 聖誕幻想點燈/煙火 (18:00開始)', stay: '約 1 小時', specialTags: [ { type: 'event', text: '🎄 冬季活動: 函館聖誕幻想' } ] },
+                { time: '19:30', type: '🍽️', event: '晚餐: <a href="https://www.google.com/maps/search/?api=1&query=%E5%B9%B8%E9%81%8B%E5%B0%8F%E4%B8%91%E6%BC%A2%E5%A0%A1%20%E7%81%A3%E5%8D%80%E6%9C%AC%E5%BA%97" target="_blank">幸運小丑漢堡 (灣區本店)</a>', description: '體驗函館限定漢堡。(可用特級套票4點)', specialTags: [ { type: 'pilgrimage', text: '🎥 聖地巡禮: Love Live! Sunshine!! 場景' }, { type: 'ig_hotspot', text: '📸 IG 熱門餐廳' } ] },
+                { time: '21:00', type: '🏨', event: '住宿: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank">ラビスタ函館ベイ</a>', description: '享受飯店頂樓天然溫泉，遠眺函館山。 泡湯後有免費冰棒。'}
+            ],
+            foodHighlights: [ // NEW FIELD
+                { name: "幸運小丑漢堡 (灣區本店)", specialty: "油淋炸雞漢堡", note: "晚餐地點" },
+                { name: "長谷川商店 (灣區店)", specialty: "烤肉便當", note: "晚餐/宵夜備選" }
+            ],
+            shoppingHighlights: [ // NEW FIELD
+                { item: "Snaffle's / Petite Merveille 起司蛋糕", location: "金森倉庫內" },
+                { item: "各式北海道土產/雜貨", location: "金森倉庫內" }
+            ],
+            seasonalNotes: [ // NEW FIELD
+                "今日(12/1)起『函館聖誕幻想』(金森倉庫)活動開始，18:00有點燈+煙火。",
+                "今日(12/1)起『五稜星之夢』(五稜郭)、『湯之川冬之燈』活動開始。",
+                "今日(12/1)起『猴子泡溫泉』(熱帶植物園) 開始。"
+            ],
+            budgetNotes: [ // NEW FIELD
+                "機場巴士 約¥700",
+                "市電/計程車 (函館站→灣區) 費用",
+                "晚餐 (幸運小丑漢堡套餐約 ¥968)",
+                "若使用特級套票點數可節省晚餐費用。"
+            ],
+            nearbySpots: [ // NEW FIELD
+                { name: "HAKODATE地名立牌", note: "位於附近魷魚廣場，IG熱點。" },
+                { name: "青函連絡船記念館摩周丸", note: "靠近地名立牌，可了解津輕海峽歷史。" }
             ],
              intel: {
                  la_vista_tip: { title: 'La Vista 住宿TIPS', text: '飯店以「全日本第一早餐」聞名，務必體驗(需另付費或含於方案)。 頂樓溫泉視野絕佳，男女湯會交換。泡湯後有免費冰棒/飲品。' },
@@ -710,32 +733,53 @@ const tripData = {
                 optionA: {
                     label: '選項A: 晴天衝夜景 & 聖誕',
                     timeline: [
-                         { time: '08:00', type: '☕', event: '早餐: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank" class="text-blue-600 hover:underline">La Vista 函館灣</a> 傳說中的第一名早餐'},
-                         { time: '10:00-12:00', type: '🚶', event: '步行前往 <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E6%9C%9D%E5%B8%82" target="_blank" class="text-blue-600 hover:underline">函館朝市</a> 體驗', description: '釣烏賊(現釣現吃)、逛乾貨。', stay: '2 小時', specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門打卡點' } ] },
-                         { time: '12:00-14:00', type: '🚶', event: '灣區探索: <a href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E6%A3%AE%E7%B4%85%E7%A3%9A%E5%80%89%E5%BA%AB" target="_blank" class="text-blue-600 hover:underline">金森紅磚倉庫</a> & <a href="https://www.google.com/maps/search/?api=1&query=羽根屋+本店3" target="_blank" class="text-blue-600 hover:underline">HAKODATE地名立牌</a>', description: '逛街購物，尋找IG打卡點。', ticketInfo: "免費入場", stay: '2 小時', parkingInfo: "『TIMES24』停車場。", specialTags: [ { type: 'pilgrimage', text: '🎥 聖地巡禮: Love Live! Sunshine!! 場景' }, { type: 'ig_hotspot', text: '📸 IG 熱門打卡點' } ] },
-                         { time: '14:00-15:00', type: '🍽️', event: '午餐: <a href="https://www.google.com/maps/search/?api=1&query=%E5%B9%B8%E9%81%8B%E5%B0%8F%E4%B8%91%E6%BC%A2%E5%A0%A1%20%E7%81%A3%E5%8D%80%E6%9C%AC%E5%BA%97" target="_blank" class="text-blue-600 hover:underline">幸運小丑漢堡 (灣區本店)</a>', description: '品嚐油淋炸雞漢堡。 (可用特級套票4點)<span class="emphasis">【美食任務：速食店已達成】</span><span class="emphasis">【美食任務：B級美食已達成】</span>', parkingInfo: "使用金森倉庫停車場。", specialTags: [ { type: 'pilgrimage', text: '🎥 聖地巡禮: Love Live! Sunshine!! 場景' }, { type: 'ig_hotspot', text: '📸 IG 熱門餐廳' } ] },
-                         { time: '15:00-16:00', type: '🚶', event: '點心: <a href="https://www.google.com/maps/search/?api=1&query=%E9%95%B7%E8%B0%B7%E5%B7%9D%E5%95%86%E5%BA%97%20%E7%81%A3%E5%8D%80%E5%BA%97" target="_blank" class="text-blue-600 hover:underline">長谷川商店 (灣區店)</a>', description: '嚐嚐看烤肉便當。(可用特級套票2點)', parkingInfo: "店家門口有少量免費停車位 (約4台)。" },
-                         { time: '16:30', type: '🚠', event: '關鍵任務: 步行或搭市電至「十字街」前往 <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E5%B1%B1%E7%BA%9C%E8%BB%8A%20%E5%B1%B1%E9%BA%93%E7%AB%99" target="_blank" class="text-blue-600 hover:underline">函館山纜車</a>', description: '搭乘纜車上山。(使用特級套票7點)', ticketInfo: "來回 ¥1,800", parkingInfo: "山麓站免費停車場 (車位極少)。" },
-                         { time: '17:00-18:00', type: '🌃', event: '絕景鑑賞: <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E5%B1%B1%E7%BA%9C%E8%BB%8A%20%E5%B1%B1%E9%BA%93%E7%AB%99" target="_blank" class="text-blue-600 hover:underline">函館山夜景</a>', description: '欣賞百萬夜景。', awardHighlight: "世界三大夜景 (米其林三星)", ticketInfo: "觀景台免費", stay: '約 1 小時', specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門打卡點' } ] },
-                         { time: '18:15', type: '🎄', event: '下山後步行返回 <a href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E6%A3%AE%E7%B4%85%E7%A3%9A%E5%80%89%E5%BA%AB" target="_blank" class="text-blue-600 hover:underline">金森倉庫</a> 觀賞聖誕幻想點燈/煙火 (18:00開始)', stay: '約 1 小時', specialTags: [ { type: 'event', text: '🎄 冬季活動: 函館聖誕幻想' } ] },
-                         { time: '19:30', type: '🍽️', event: '晚餐: <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E5%A4%AA%E9%83%8E%20%E5%AE%87%E8%B3%80%E6%B5%A6%E7%B8%BD%E5%BA%97" target="_blank" class="text-blue-600 hover:underline">函太郎 (宇賀浦總店)</a>', description: '搭計程車或市電轉乘。(可用特級套票折抵)<span class="emphasis">【美食任務：迴轉壽司已達成】</span>', parkingInfo: "設有大型免費專用停車場 (約60台)。", specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門餐廳' } ] },
-                         { time: '21:30', type: '🏨', event: '住宿: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank" class="text-blue-600 hover:underline">ラビスタ函館ベイ</a>'}
+                         { time: '08:00', type: '☕', event: '早餐: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank">La Vista 函館灣</a> 傳說中的第一名早餐'},
+                         { time: '10:00-12:00', type: '🚶', event: '步行前往 <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E6%9C%9D%E5%B8%82" target="_blank">函館朝市</a> 體驗', description: '釣烏賊(現釣現吃)、逛乾貨。', stay: '2 小時', specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門打卡點' } ] },
+                         { time: '12:00-14:00', type: '🚶', event: '灣區探索: <a href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E6%A3%AE%E7%B4%85%E7%A3%9A%E5%80%89%E5%BA%AB" target="_blank">金森紅磚倉庫</a> & <a href="https://www.google.com/maps/search/?api=1&query=羽根屋+本店3" target="_blank">HAKODATE地名立牌</a>', description: '逛街購物，尋找IG打卡點。', ticketInfo: "免費入場", stay: '2 小時', parkingInfo: "『TIMES24』停車場。", specialTags: [ { type: 'pilgrimage', text: '🎥 聖地巡禮: Love Live! Sunshine!! 場景' }, { type: 'ig_hotspot', text: '📸 IG 熱門打卡點' } ] },
+                         { time: '14:00-15:00', type: '🍽️', event: '午餐: <a href="https://www.google.com/maps/search/?api=1&query=%E5%B9%B8%E9%81%8B%E5%B0%8F%E4%B8%91%E6%BC%A2%E5%A0%A1%20%E7%81%A3%E5%8D%80%E6%9C%AC%E5%BA%97" target="_blank">幸運小丑漢堡 (灣區本店)</a>', description: '品嚐油淋炸雞漢堡。 (可用特級套票4點)<span class="emphasis">【美食任務：速食店已達成】</span><span class="emphasis">【美食任務：B級美食已達成】</span>', parkingInfo: "使用金森倉庫停車場。", specialTags: [ { type: 'pilgrimage', text: '🎥 聖地巡禮: Love Live! Sunshine!! 場景' }, { type: 'ig_hotspot', text: '📸 IG 熱門餐廳' } ] },
+                         { time: '15:00-16:00', type: '🚶', event: '點心: <a href="https://www.google.com/maps/search/?api=1&query=%E9%95%B7%E8%B0%B7%E5%B7%9D%E5%95%86%E5%BA%97%20%E7%81%A3%E5%8D%80%E5%BA%97" target="_blank">長谷川商店 (灣區店)</a>', description: '嚐嚐看烤肉便當。(可用特級套票2點)', parkingInfo: "店家門口有少量免費停車位 (約4台)。" },
+                         { time: '16:30', type: '🚠', event: '關鍵任務: 步行或搭市電至「十字街」前往 <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E5%B1%B1%E7%BA%9C%E8%BB%8A%20%E5%B1%B1%E9%BA%93%E7%AB%99" target="_blank">函館山纜車</a>', description: '搭乘纜車上山。(使用特級套票7點)', ticketInfo: "來回 ¥1,800", parkingInfo: "山麓站免費停車場 (車位極少)。" },
+                         { time: '17:00-18:00', type: '🌃', event: '絕景鑑賞: <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E5%B1%B1%E7%BA%9C%E8%BB%8A%20%E5%B1%B1%E9%BA%93%E7%AB%99" target="_blank">函館山夜景</a>', description: '欣賞百萬夜景。', awardHighlight: "世界三大夜景 (米其林三星)", ticketInfo: "觀景台免費", stay: '約 1 小時', specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門打卡點' } ] },
+                         { time: '18:15', type: '🎄', event: '下山後步行返回 <a href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E6%A3%AE%E7%B4%85%E7%A3%9A%E5%80%89%E5%BA%AB" target="_blank">金森倉庫</a> 觀賞聖誕幻想點燈/煙火 (18:00開始)', stay: '約 1 小時', specialTags: [ { type: 'event', text: '🎄 冬季活動: 函館聖誕幻想' } ] },
+                         { time: '19:30', type: '🍽️', event: '晚餐: <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E5%A4%AA%E9%83%8E%20%E5%AE%87%E8%B3%80%E6%B5%A6%E7%B8%BD%E5%BA%97" target="_blank">函太郎 (宇賀浦總店)</a>', description: '搭計程車或市電轉乘。(可用特級套票折抵)<span class="emphasis">【美食任務：迴轉壽司已達成】</span>', parkingInfo: "設有大型免費專用停車場 (約60台)。", specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門餐廳' } ] },
+                         { time: '21:30', type: '🏨', event: '住宿: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank">ラビスタ函館ベイ</a>'}
                     ]
                 },
                 optionB: {
                     label: '選項B: 雨天備案・灣區室內 & 聖誕',
                     timeline: [
-                         { time: '08:00', type: '☕', event: '早餐: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank" class="text-blue-600 hover:underline">La Vista 函館灣</a> 傳說中的第一名早餐' },
-                         { time: '10:00-12:00', type: '🚶', event: '步行前往 <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E6%9C%9D%E5%B8%82" target="_blank" class="text-blue-600 hover:underline">函館朝市</a> 體驗', description: '釣烏賊、品嚐海鮮。', stay: '2 小時', specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門打卡點' } ] },
-                         { time: '12:00-16:00', type: '🚶', event: '灣區深度探索: <a href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E6%A3%AE%E7%B4%85%E7%A3%9A%E5%80%89%E5%BA%AB" target="_blank" class="text-blue-600 hover:underline">金森紅磚倉庫</a> & <a href="https://www.google.com/maps/search/?api=1&query=羽根屋+本店1" target="_blank" class="text-blue-600 hover:underline">函館明治館</a>', description: '增加室內購物與參觀時間 (明治館有音樂盒、玻璃工藝)。', ticketInfo: "倉庫/明治館免費入場", stay: '約 4 小時', parkingInfo: "『TIMES24』停車場。", specialTags: [ { type: 'pilgrimage', text: '🎥 聖地巡禮: Love Live! Sunshine!! 場景' }, { type: 'ig_hotspot', text: '📸 IG 熱門打卡點' } ] },
-                         { time: '16:00-17:00', type: '🍽️', event: '午餐/下午茶: <a href="https://www.google.com/maps/search/?api=1&query=%E5%B9%B8%E9%81%8B%E5%B0%8F%E4%B8%91%E6%BC%A2%E5%A0%A1%20%E7%81%A3%E5%8D%80%E6%9C%AC%E5%BA%97" target="_blank" class="text-blue-600 hover:underline">幸運小丑漢堡 (灣區本店)</a>', description: '品嚐油淋炸雞漢堡。 (可用特級套票4點)<span class="emphasis">【美食任務：速食店已達成】</span><span class="emphasis">【美食任務：B級美食已達成】</span>', parkingInfo: "使用金森倉庫停車場。", specialTags: [ { type: 'pilgrimage', text: '🎥 聖地巡禮: Love Live! Sunshine!! 場景' }, { type: 'ig_hotspot', text: '📸 IG 熱門餐廳' } ] },
-                         { time: '17:00-18:00', type: '☕', event: '下午茶: 灣區咖啡廳 (e.g. <a href="https://www.google.com/maps/search/?api=1&query=羽根屋+本店2" target="_blank" class="text-blue-600 hover:underline">Starbucks 函館ベイサイド店</a> 或 倉庫內咖啡店)', description: '避雨休息。<span class="emphasis">【美食任務：下午茶已達成】</span>', parkingInfo: "使用金森倉庫停車場。" },
-                         { time: '18:00', type: '🎄', event: '觀賞 <a href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E6%A3%AE%E7%B4%85%E7%A3%9A%E5%80%89%E5%BA%AB" target="_blank" class="text-blue-600 hover:underline">金森倉庫</a> 聖誕幻想點燈/煙火 (18:00開始)', description: '雨天也可欣賞的燈光活動。', stay: '約 1 小時', specialTags: [ { type: 'event', text: '🎄 冬季活動: 函館聖誕幻想' } ] },
-                         { time: '19:00', type: '🍽️', event: '晚餐: <a href="https://www.google.com/maps/search/?api=1&query=羽根屋+本店4" target="_blank" class="text-blue-600 hover:underline">函館啤酒館 (函館ビヤホール)</a>', description: '在紅磚倉庫內享用晚餐與啤酒。 (可用特級套票折抵)', parkingInfo: "使用金森倉庫停車場。", specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門餐廳' } ] },
-                         { time: '21:00', type: '🏨', event: '住宿: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank" class="text-blue-600 hover:underline">ラビスタ函館ベイ</a>'}
+                         { time: '08:00', type: '☕', event: '早餐: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank">La Vista 函館灣</a> 傳說中的第一名早餐' },
+                         { time: '10:00-12:00', type: '🚶', event: '步行前往 <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E6%9C%9D%E5%B8%82" target="_blank">函館朝市</a> 體驗', description: '釣烏賊、品嚐海鮮。', stay: '2 小時', specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門打卡點' } ] },
+                         { time: '12:00-16:00', type: '🚶', event: '灣區深度探索: <a href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E6%A3%AE%E7%B4%85%E7%A3%9A%E5%80%89%E5%BA%AB" target="_blank">金森紅磚倉庫</a> & <a href="https://www.google.com/maps/search/?api=1&query=羽根屋+本店1" target="_blank">函館明治館</a>', description: '增加室內購物與參觀時間 (明治館有音樂盒、玻璃工藝)。', ticketInfo: "倉庫/明治館免費入場", stay: '約 4 小時', parkingInfo: "『TIMES24』停車場。", specialTags: [ { type: 'pilgrimage', text: '🎥 聖地巡禮: Love Live! Sunshine!! 場景' }, { type: 'ig_hotspot', text: '📸 IG 熱門打卡點' } ] },
+                         { time: '16:00-17:00', type: '🍽️', event: '午餐/下午茶: <a href="https://www.google.com/maps/search/?api=1&query=%E5%B9%B8%E9%81%8B%E5%B0%8F%E4%B8%91%E6%BC%A2%E5%A0%A1%20%E7%81%A3%E5%8D%80%E6%9C%AC%E5%BA%97" target="_blank">幸運小丑漢堡 (灣區本店)</a>', description: '品嚐油淋炸雞漢堡。 (可用特級套票4點)<span class="emphasis">【美食任務：速食店已達成】</span><span class="emphasis">【美食任務：B級美食已達成】</span>', parkingInfo: "使用金森倉庫停車場。", specialTags: [ { type: 'pilgrimage', text: '🎥 聖地巡禮: Love Live! Sunshine!! 場景' }, { type: 'ig_hotspot', text: '📸 IG 熱門餐廳' } ] },
+                         { time: '17:00-18:00', type: '☕', event: '下午茶: 灣區咖啡廳 (e.g. <a href="https://www.google.com/maps/search/?api=1&query=羽根屋+本店2" target="_blank">Starbucks 函館ベイサイド店</a> 或 倉庫內咖啡店)', description: '避雨休息。<span class="emphasis">【美食任務：下午茶已達成】</span>', parkingInfo: "使用金森倉庫停車場。" },
+                         { time: '18:00', type: '🎄', event: '觀賞 <a href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E6%A3%AE%E7%B4%85%E7%A3%9A%E5%80%89%E5%BA%AB" target="_blank">金森倉庫</a> 聖誕幻想點燈/煙火 (18:00開始)', description: '雨天也可欣賞的燈光活動。', stay: '約 1 小時', specialTags: [ { type: 'event', text: '🎄 冬季活動: 函館聖誕幻想' } ] },
+                         { time: '19:00', type: '🍽️', event: '晚餐: <a href="https://www.google.com/maps/search/?api=1&query=羽根屋+本店4" target="_blank">函館啤酒館 (函館ビヤホール)</a>', description: '在紅磚倉庫內享用晚餐與啤酒。 (可用特級套票折抵)', parkingInfo: "使用金森倉庫停車場。", specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門餐廳' } ] },
+                         { time: '21:00', type: '🏨', event: '住宿: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank">ラビスタ函館ベイ</a>'}
                     ]
                 }
             },
+            foodHighlights: [ // NEW FIELD
+                { name: "函館朝市", specialty: "海鮮丼、釣活烏賊", note: "早餐/早午餐" },
+                { name: "幸運小丑漢堡 (灣區本店)", specialty: "油淋炸雞漢堡", note: "午餐" },
+                { name: "長谷川商店 (灣區店)", specialty: "烤肉便當", note: "點心" },
+                { name: "函太郎 (宇賀浦總店)", specialty: "海景迴轉壽司", note: "晚餐 (Option A)" },
+                { name: "函館啤酒館", specialty: "Sapporo直送生啤", note: "晚餐 (Option B)" }
+            ],
+            shoppingHighlights: [ // NEW FIELD
+                { item: "函館朝市", location: "乾貨、海產", note: "注意營業時間至下午2點左右。" },
+                { item: "金森紅磚倉庫", location: "Snaffle's、雜貨" }
+            ],
+            seasonalNotes: [ // NEW FIELD
+                 "『函館聖誕幻想』(金森倉庫) 18:00有點燈+煙火。"
+            ],
+            budgetNotes: [ // NEW FIELD
+                "本日重點使用『函館特級套票』點數：函館山纜車(7點) + 幸運小丑漢堡(4點) = 11點 (Option A)。",
+                "可考慮購買市電一日券(¥600)或使用特級套票交通券。"
+            ],
+             nearbySpots: [ // NEW FIELD
+                 { name: "函館明治館", note: "金森倉庫旁，音樂盒、玻璃工藝。" }
+             ],
              intel: {
                  christmas_fantasy: { title: '聖誕幻想攻略', text: '活動期間(11月底-12/25)每天18:00在金森倉庫前有聖誕樹點燈儀式與煙火。 還有熱湯吧攤位可取暖。 無論晴雨都是晚間亮點。' },
                  rainy_day_alt: { title: '雨備選項B 提示', text: '選項B避開戶外視野為主的函館山。金森倉庫、明治館、啤酒館提供充足的室內活動。聖誕幻想活動雨天照常舉行。' },
@@ -752,31 +796,51 @@ const tripData = {
                     label: '選項A: 晴天再戰夜景',
                     timeline: [
                         { time: '09:00', type: '☕', event: '早餐: 飯店 (La Vista 早餐)' },
-                        { time: '10:00-11:00', type: '⛩️', event: '步行前往 元町散策起點: <a href="https://www.google.com/maps/search/?api=1&query=%E8%88%B9%E9%AD%82%E7%A5%9E%E7%A4%BE" target="_blank" class="text-blue-600 hover:underline">船魂神社</a>', description: '參拜北海道最古老神社。', ticketInfo: "免費參拜", stay: '約 1 小時', specialTags: [ { type: 'recommendation', text: '🎯 必買推薦: 舵守' } ] },
-                        { time: '11:00-14:00', type: '🚶', event: '<a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%20%E5%85%83%E7%94%BA%20%E5%85%AB%E5%B9%A1%E5%9D%82" target="_blank" class="text-blue-600 hover:underline">元町教會群 & 坂道巡禮</a>', description: '散步遊覽八幡坂、函館正教會、元町天主堂。', awardHighlight: "日本音風景100選 (正教會鐘聲)", stay: '約 3 小時', parkingInfo: "『函館市元町觀光停車場』。", specialTags: [ { type: 'pilgrimage', text: '🎥 聖地巡禮: Love Live! Sunshine!! / First Love 場景' }, { type: 'ig_hotspot', text: '📸 IG 熱門打卡點 (八幡坂/正教會)' } ] },
-                        { time: '14:00-15:00', type: '🏛️', event: '參觀 <a href="https://www.google.com/maps/search/?api=1&query=%E8%88%8A%E5%87%BD%E9%A4%A8%E5%8D%80%E5%85%AC%E6%9C%83%E5%A0%82" target="_blank" class="text-blue-600 hover:underline">舊函館區公會堂</a>', description: '欣賞華麗洋館。(可用特級套票1點)', ticketInfo: "大人 300日圓", stay: '約 1 小時', specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門打卡點' } ] },
-                        { time: '15:30', type: '🍽️', event: '午餐/下午茶: 元町咖啡廳 (e.g. <a href="https://www.google.com/maps/search/?api=1&query=%E8%8C%B6%E6%88%BF%20%E8%8F%8A%E6%B3%89" target="_blank" class="text-blue-600 hover:underline">茶房 菊泉</a> 或 <a href="https://www.google.com/maps/search/?api=1&query=羽根屋+本店5" target="_blank" class="text-blue-600 hover:underline">Angelique Voyage</a>)', description: '在古民家咖啡廳或Tabelog第一名甜點店休息。' },
-                        { time: '17:00-17:30', type: '⛩️', event: '參拜 <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E8%AD%B7%E5%9C%8B%E7%A5%9E%E7%A4%BE" target="_blank" class="text-blue-600 hover:underline">函館護國神社</a>', description: '尋找貓頭鷹御守。', ticketInfo: "免費參拜", parkingInfo: "可使用函館山纜車站免費停車場。", stay: '約 30 分鐘', specialTags: [ { type: 'recommendation', text: '🎯 必買推薦: 貓頭鷹御守' } ] },
-                        { time: '17:45', type: '🚠', event: '關鍵任務(二次機會): <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E5%B1%B1%E7%BA%9C%E8%BB%8A%20%E5%B1%B1%E9%BA%93%E7%AB%99" target="_blank" class="text-blue-600 hover:underline">函館山纜車</a>', description: '再次挑戰百萬夜景！(使用特級套票7點)', ticketInfo: "來回 ¥1,800", parkingInfo: "山麓站免費停車場 (車位極少)。" },
-                        { time: '18:15-19:45', type: '🌃', event: '絕景鑑賞: <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E5%B1%B1%E7%BA%9C%E8%BB%8A%20%E5%B1%B1%E9%BA%93%E7%AB%99" target="_blank" class="text-blue-600 hover:underline">函館山夜景</a>', description: '把握第二次機會欣賞夜景。', awardHighlight: "世界三大夜景 (米其林三星)", ticketInfo: "觀景台免費", stay: '約 1.5 小時', specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門打卡點' } ] },
-                        { time: '20:15', type: '🍽️', event: '晚餐: 十字街周邊<a href="https://www.google.com/maps/search/?api=1&query=羽根屋+本店6" target="_blank" class="text-blue-600 hover:underline">大門橫丁</a> 或 返回灣區用餐', description: '體驗居酒屋小巷氛圍。(大門橫丁可用特級套票折抵)' },
-                        { time: '21:30', type: '🏨', event: '住宿: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank" class="text-blue-600 hover:underline">ラビスタ函館ベイ</a>'}
+                        { time: '10:00-11:00', type: '⛩️', event: '步行前往 元町散策起點: <a href="https://www.google.com/maps/search/?api=1&query=%E8%88%B9%E9%AD%82%E7%A5%9E%E7%A4%BE" target="_blank">船魂神社</a>', description: '參拜北海道最古老神社。', ticketInfo: "免費參拜", stay: '約 1 小時', specialTags: [ { type: 'recommendation', text: '🎯 必買推薦: 舵守' } ] },
+                        { time: '11:00-14:00', type: '🚶', event: '<a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%20%E5%85%83%E7%94%BA%20%E5%85%AB%E5%B9%A1%E5%9D%82" target="_blank">元町教會群 & 坂道巡禮</a>', description: '散步遊覽八幡坂、函館正教會、元町天主堂。', awardHighlight: "日本音風景100選 (正教會鐘聲)", stay: '約 3 小時', parkingInfo: "『函館市元町觀光停車場』。", specialTags: [ { type: 'pilgrimage', text: '🎥 聖地巡禮: Love Live! Sunshine!! / First Love 場景' }, { type: 'ig_hotspot', text: '📸 IG 熱門打卡點 (八幡坂/正教會)' } ] },
+                        { time: '14:00-15:00', type: '🏛️', event: '參觀 <a href="https://www.google.com/maps/search/?api=1&query=%E8%88%8A%E5%87%BD%E9%A4%A8%E5%8D%80%E5%85%AC%E6%9C%83%E5%A0%82" target="_blank">舊函館區公會堂</a>', description: '欣賞華麗洋館。(可用特級套票1點)', ticketInfo: "大人 300日圓", stay: '約 1 小時', specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門打卡點' } ] },
+                        { time: '15:30', type: '🍽️', event: '午餐/下午茶: 元町咖啡廳 (e.g. <a href="https://www.google.com/maps/search/?api=1&query=%E8%8C%B6%E6%88%BF%20%E8%8F%8A%E6%B3%89" target="_blank">茶房 菊泉</a> 或 <a href="https://www.google.com/maps/search/?api=1&query=羽根屋+本店5" target="_blank">Angelique Voyage</a>)', description: '在古民家咖啡廳或Tabelog第一名甜點店休息。' },
+                        { time: '17:00-17:30', type: '⛩️', event: '參拜 <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E8%AD%B7%E5%9C%8B%E7%A5%9E%E7%A4%BE" target="_blank">函館護國神社</a>', description: '尋找貓頭鷹御守。', ticketInfo: "免費參拜", parkingInfo: "可使用函館山纜車站免費停車場。", stay: '約 30 分鐘', specialTags: [ { type: 'recommendation', text: '🎯 必買推薦: 貓頭鷹御守' } ] },
+                        { time: '17:45', type: '🚠', event: '關鍵任務(二次機會): <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E5%B1%B1%E7%BA%9C%E8%BB%8A%20%E5%B1%B1%E9%BA%93%E7%AB%99" target="_blank">函館山纜車</a>', description: '再次挑戰百萬夜景！(使用特級套票7點)', ticketInfo: "來回 ¥1,800", parkingInfo: "山麓站免費停車場 (車位極少)。" },
+                        { time: '18:15-19:45', type: '🌃', event: '絕景鑑賞: <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E5%B1%B1%E7%BA%9C%E8%BB%8A%20%E5%B1%B1%E9%BA%93%E7%AB%99" target="_blank">函館山夜景</a>', description: '把握第二次機會欣賞夜景。', awardHighlight: "世界三大夜景 (米其林三星)", ticketInfo: "觀景台免費", stay: '約 1.5 小時', specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門打卡點' } ] },
+                        { time: '20:15', type: '🍽️', event: '晚餐: 十字街周邊<a href="https://www.google.com/maps/search/?api=1&query=羽根屋+本店6" target="_blank">大門橫丁</a> 或 返回灣區用餐', description: '體驗居酒屋小巷氛圍。(大門橫丁可用特級套票折抵)' },
+                        { time: '21:30', type: '🏨', event: '住宿: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank">ラビスタ函館ベイ</a>'}
                     ]
                  },
                  optionB: {
                     label: '選項B: 雨天/已看夜景',
                     timeline: [
                         { time: '09:00', type: '☕', event: '早餐: 飯店 (La Vista 早餐)' },
-                        { time: '10:00-11:00', type: '⛩️', event: '步行前往 元町散策起點: <a href="https://www.google.com/maps/search/?api=1&query=%E8%88%B9%E9%AD%82%E7%A5%9E%E7%A4%BE" target="_blank" class="text-blue-600 hover:underline">船魂神社</a>', description: '參拜北海道最古老神社。', ticketInfo: "免費參拜", stay: '約 1 小時', specialTags: [ { type: 'recommendation', text: '🎯 必買推薦: 舵守' } ] },
-                        { time: '11:00-14:00', type: '🚶', event: '<a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%20%E5%85%83%E7%94%BA%20%E5%85%AB%E5%B9%A1%E5%9D%82" target="_blank" class="text-blue-600 hover:underline">元町教會群 & 坂道巡禮</a> (雨天可重點參觀教堂內部/領事館)', description: '散步遊覽八幡坂、函館正教會、舊英國領事館(可用特級套票1點)。', awardHighlight: "日本音風景100選 (正教會鐘聲)", stay: '約 3 小時', parkingInfo: "『函館市元町觀光停車場』。", specialTags: [ { type: 'pilgrimage', text: '🎥 聖地巡禮: Love Live! Sunshine!! / First Love 場景' }, { type: 'ig_hotspot', text: '📸 IG 熱門打卡點 (八幡坂/正教會)' } ] },
-                        { time: '14:00-15:00', type: '🏛️', event: '參觀 <a href="https://www.google.com/maps/search/?api=1&query=%E8%88%8A%E5%87%BD%E9%A4%A8%E5%8D%80%E5%85%AC%E6%9C%83%E5%A0%82" target="_blank" class="text-blue-600 hover:underline">舊函館區公會堂</a>', description: '欣賞華麗洋館。(可用特級套票1點)', ticketInfo: "大人 300日圓", stay: '約 1 小時', specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門打卡點' } ] },
-                        { time: '15:30', type: '🍽️', event: '午餐/下午茶: 元町咖啡廳 (e.g. <a href="https://www.google.com/maps/search/?api=1&query=%E8%8C%B6%E6%88%BF%20%E8%8F%8A%E6%B3%89" target="_blank" class="text-blue-600 hover:underline">茶房 菊泉</a> 或 <a href="https://www.google.com/maps/search/?api=1&query=羽根屋+本店5" target="_blank" class="text-blue-600 hover:underline">Angelique Voyage</a>)', description: '在古民家咖啡廳或Tabelog第一名甜點店休息。' },
-                        { time: '17:00-18:30', type: '⛩️', event: '參拜 <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E8%AD%B7%E5%9C%8B%E7%A5%9E%E7%A4%BE" target="_blank" class="text-blue-600 hover:underline">函館護國神社</a>', description: '尋找貓頭鷹御守。', ticketInfo: "免費參拜", parkingInfo: "可使用函館山纜車站免費停車場。", stay: '約 1.5 小時', specialTags: [ { type: 'recommendation', text: '🎯 必買推薦: 貓頭鷹御守' } ] },
-                        { time: '19:00', type: '🍽️', event: '晚餐: <a href="https://www.google.com/maps/search/?api=1&query=%E3%81%A8%E3%82%93%E6%82%A6%20%E5%87%BD%E9%A4%A8" target="_blank" class="text-blue-600 hover:underline">とん悦 (Tonetsu)</a>', description: '搭市電前往品嚐在地炸豬排。<span class="emphasis">【美食任務：豬排飯已達成】</span>', parkingInfo: "店家設有專用停車場。" },
-                        { time: '21:00', type: '🏨', event: '住宿: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank" class="text-blue-600 hover:underline">ラビスタ函館ベイ</a>'}
+                        { time: '10:00-11:00', type: '⛩️', event: '步行前往 元町散策起點: <a href="https://www.google.com/maps/search/?api=1&query=%E8%88%B9%E9%AD%82%E7%A5%9E%E7%A4%BE" target="_blank">船魂神社</a>', description: '參拜北海道最古老神社。', ticketInfo: "免費參拜", stay: '約 1 小時', specialTags: [ { type: 'recommendation', text: '🎯 必買推薦: 舵守' } ] },
+                        { time: '11:00-14:00', type: '🚶', event: '<a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%20%E5%85%83%E7%94%BA%20%E5%85%AB%E5%B9%A1%E5%9D%82" target="_blank">元町教會群 & 坂道巡禮</a> (雨天可重點參觀教堂內部/領事館)', description: '散步遊覽八幡坂、函館正教會、舊英國領事館(可用特級套票1點)。', awardHighlight: "日本音風景100選 (正教會鐘聲)", stay: '約 3 小時', parkingInfo: "『函館市元町觀光停車場』。", specialTags: [ { type: 'pilgrimage', text: '🎥 聖地巡禮: Love Live! Sunshine!! / First Love 場景' }, { type: 'ig_hotspot', text: '📸 IG 熱門打卡點 (八幡坂/正教會)' } ] },
+                        { time: '14:00-15:00', type: '🏛️', event: '參觀 <a href="https://www.google.com/maps/search/?api=1&query=%E8%88%8A%E5%87%BD%E9%A4%A8%E5%8D%80%E5%85%AC%E6%9C%83%E5%A0%82" target="_blank">舊函館區公會堂</a>', description: '欣賞華麗洋館。(可用特級套票1點)', ticketInfo: "大人 300日圓", stay: '約 1 小時', specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門打卡點' } ] },
+                        { time: '15:30', type: '🍽️', event: '午餐/下午茶: 元町咖啡廳 (e.g. <a href="https://www.google.com/maps/search/?api=1&query=%E8%8C%B6%E6%88%BF%20%E8%8F%8A%E6%B3%89" target="_blank">茶房 菊泉</a> 或 <a href="https://www.google.com/maps/search/?api=1&query=羽根屋+本店5" target="_blank">Angelique Voyage</a>)', description: '在古民家咖啡廳或Tabelog第一名甜點店休息。' },
+                        { time: '17:00-18:30', type: '⛩️', event: '參拜 <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E8%AD%B7%E5%9C%8B%E7%A5%9E%E7%A4%BE" target="_blank">函館護國神社</a>', description: '尋找貓頭鷹御守。', ticketInfo: "免費參拜", parkingInfo: "可使用函館山纜車站免費停車場。", stay: '約 1.5 小時', specialTags: [ { type: 'recommendation', text: '🎯 必買推薦: 貓頭鷹御守' } ] },
+                        { time: '19:00', type: '🍽️', event: '晚餐: <a href="https://www.google.com/maps/search/?api=1&query=%E3%81%A8%E3%82%93%E6%82%A6%20%E5%87%BD%E9%A4%A8" target="_blank">とん悦 (Tonetsu)</a>', description: '搭市電前往品嚐在地炸豬排。<span class="emphasis">【美食任務：豬排飯已達成】</span>', parkingInfo: "店家設有專用停車場。" },
+                        { time: '21:00', type: '🏨', event: '住宿: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank">ラビスタ函館ベイ</a>'}
                     ]
                  }
             },
+            foodHighlights: [ // NEW FIELD
+                { name: "Angelique Voyage", specialty: "Tabelog第一名甜點", note: "午餐/下午茶選項" },
+                { name: "茶房 菊泉", specialty: "古民家咖啡廳", note: "午餐/下午茶選項" },
+                { name: "とん悦 (Tonetsu)", specialty: "在地人推薦炸豬排", note: "晚餐 (Option B)" },
+                { name: "大門橫丁", specialty: "居酒屋小巷", note: "晚餐 (Option A)，可用特級套票折抵。" }
+            ],
+            shoppingHighlights: [ // NEW FIELD
+                { item: "元町區域特色小店", location: "散策途中發掘" }
+            ],
+            seasonalNotes: [ // NEW FIELD
+                 "冬季『函館冬季節慶』期間，八幡坂、二十間坂可能有夜間點燈。"
+            ],
+            budgetNotes: [ // NEW FIELD
+                "Option A 會用完特級套票點數 (公會堂1+領事館1+纜車7 = 9點 / 或公會堂1+纜車7=8點，剩餘點數彈性)。",
+                "Option B 使用特級套票點數較少 (公會堂1+領事館1=2點)。",
+                "建議購買市電一日券(¥600)。"
+            ],
+            nearbySpots: [ // NEW FIELD
+                { name: "舊英國領事館", note: "元町景點，可用特級套票(1點)。" }
+            ],
              intel: {
                   night_view_strategy: { title: '夜景策略：第二次機會 (選項A)', text: '如果Day 2天氣不佳或想再次欣賞，Day 3傍晚是第二次機會。結束元町行程後，護國神社就在纜車站旁，動線順暢。' },
                   special_ticket_points: { title: '特級套票點數運用', text: '今日可使用點數於舊函館區公會堂(1點)、舊英國領事館(1點)。 若選擇Option A，則再加上函館山纜車(7點)，點數剛好用完！' }, // Updated point usage
@@ -791,15 +855,35 @@ const tripData = {
             timeline: [
                  { time: '08:30', type: '☕', event: '早餐: 飯店 (La Vista 早餐)' },
                  { time: '09:30', type: '🚋', event: '搭乘市電 (魚市場通 → 五稜郭公園前) (使用特級套票交通券)'},
-                 { time: '10:00-12:00', type: '🏯', event: '登上 <a href="https://www.google.com/maps/search/?api=1&query=%E4%BA%94%E7%A8%9C%E9%83%AD%E5%A1%94" target="_blank" class="text-blue-600 hover:underline">五稜郭塔</a>', description: '白天俯瞰星形要塞。(特級套票已用完點數，需購票)', awardHighlight: "日本100名城 (續)", ticketInfo: "大人 900日圓", stay: '約 2 小時', parkingInfo: "無專用停車場，使用周邊付費停車場。", specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門打卡點' } ] },
-                 { time: '12:00-13:00', type: '🍽️', event: '午餐: <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E9%BA%B5%E5%BB%9A%E6%88%BF%20%E5%91%B3%E5%BD%A9%20%E6%9C%AC%E5%BA%97" target="_blank" class="text-blue-600 hover:underline">函館麵厨房 味彩 (本店)</a>', description: '品嚐函館鹽味拉麵。(特級套票已用完點數，需付費)<span class="emphasis">【美食任務：拉麵已達成】</span>', parkingInfo: "有專用停車場 (7台)。", specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門餐廳' } ] },
-                 { time: '13:00-15:00', type: '🚶', event: '漫步 <a href="https://www.google.com/maps/search/?api=1&query=%E4%BA%94%E7%A8%9C%E9%83%AD%E5%A1%94" target="_blank" class="text-blue-600 hover:underline">五稜郭公園</a> & <a href="https://www.google.com/maps/search/?api=1&query=羽根屋+本店7" target="_blank" class="text-blue-600 hover:underline">箱館奉行所</a>', description: '深入了解幕末歷史。(特級套票已用完點數，需購票)', awardHighlight: "日本櫻花名所100選", ticketInfo: "公園免費 (奉行所 500日圓)", stay: '約 2 小時', specialTags: [ { type: 'pilgrimage', text: '🎥 聖地巡禮: 黃金神威 場景' } ] },
-                 { time: '15:00-16:30', type: '☕', event: '下午茶: <a href="https://www.google.com/maps/search/?api=1&query=%E5%85%AD%E8%8A%B1%E4%BA%AD%20%E4%BA%94%E7%A8%9C%E9%83%AD%E5%BA%97" target="_blank" class="text-blue-600 hover:underline">六花亭 (五稜郭店)</a>', description: '享受喫茶室的甜點與咖啡。', parkingInfo: "設有免費專用停車場。" },
-                 { time: '17:00-18:00', type: '✨', event: '冬季限定: 觀賞 <a href="https://www.google.com/maps/search/?api=1&query=%E4%BA%94%E7%A8%9C%E9%83%AD%E5%A1%94" target="_blank" class="text-blue-600 hover:underline">五稜星之夢</a> 點燈', description: '在公園周邊欣賞護城河點燈。', stay: '約 1 小時', specialTags: [ { type: 'event', text: '✨ 冬季活動: 五稜星之夢' } ] },
-                 { time: '18:30', type: '🍽️', event: '晚餐 (選項A): <a href="https://www.google.com/maps/search/?api=1&query=Colz%20%E3%82%B3%E3%83%AB%E3%83%84%20%E5%87%BD%E9%A4%A8" target="_blank" class="text-blue-600 hover:underline">Colz (コルツ)</a> (需預約)', description: '品嚐Tabelog高分的在地義大利麵。<span class="emphasis">【美食任務：義大利麵已達成】</span>', parkingInfo: "店家後方設有專用停車場。" },
-                 { time: '18:30', type: '🍽️', event: '晚餐 (選項B): <a href="https://www.google.com/maps/search/?api=1&query=%E3%82%AC%E3%82%B9%E3%83%88%20%E5%87%BD%E9%A4%A8%E9%8D%9B%E5%86%B6%E5%BA%97" target="_blank" class="text-blue-600 hover:underline">ガスト (Gusto) 函館鍛治店</a>', description: '體驗日本家庭餐廳文化。<span class="emphasis">【美食任務：家庭餐廳已達成】</span>', parkingInfo: "設有專用停車場。" },
-                 { time: '20:30', type: '🏨', event: '返回飯店: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank" class="text-blue-600 hover:underline">ラビスタ函館ベイ</a>'}
+                 { time: '10:00-12:00', type: '🏯', event: '登上 <a href="https://www.google.com/maps/search/?api=1&query=%E4%BA%94%E7%A8%9C%E9%83%AD%E5%A1%94" target="_blank">五稜郭塔</a>', description: '白天俯瞰星形要塞。(特級套票已用完點數，需購票)', awardHighlight: "日本100名城 (續)", ticketInfo: "大人 900日圓", stay: '約 2 小時', parkingInfo: "無專用停車場，使用周邊付費停車場。", specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門打卡點' } ] },
+                 { time: '12:00-13:00', type: '🍽️', event: '午餐: <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E9%BA%B5%E5%BB%9A%E6%88%BF%20%E5%91%B3%E5%BD%A9%20%E6%9C%AC%E5%BA%97" target="_blank">函館麵厨房 味彩 (本店)</a>', description: '品嚐函館鹽味拉麵。(特級套票已用完點數，需付費)<span class="emphasis">【美食任務：拉麵已達成】</span>', parkingInfo: "有專用停車場 (7台)。", specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門餐廳' } ] },
+                 { time: '13:00-15:00', type: '🚶', event: '漫步 <a href="https://www.google.com/maps/search/?api=1&query=%E4%BA%94%E7%A8%9C%E9%83%AD%E5%A1%94" target="_blank">五稜郭公園</a> & <a href="https://www.google.com/maps/search/?api=1&query=羽根屋+本店7" target="_blank">箱館奉行所</a>', description: '深入了解幕末歷史。(特級套票已用完點數，需購票)', awardHighlight: "日本櫻花名所100選", ticketInfo: "公園免費 (奉行所 500日圓)", stay: '約 2 小時', specialTags: [ { type: 'pilgrimage', text: '🎥 聖地巡禮: 黃金神威 場景' } ] },
+                 { time: '15:00-16:30', type: '☕', event: '下午茶: <a href="https://www.google.com/maps/search/?api=1&query=%E5%85%AD%E8%8A%B1%E4%BA%AD%20%E4%BA%94%E7%A8%9C%E9%83%AD%E5%BA%97" target="_blank">六花亭 (五稜郭店)</a>', description: '享受喫茶室的甜點與咖啡。', parkingInfo: "設有免費專用停車場。" },
+                 { time: '17:00-18:00', type: '✨', event: '冬季限定: 觀賞 <a href="https://www.google.com/maps/search/?api=1&query=%E4%BA%94%E7%A8%9C%E9%83%AD%E5%A1%94" target="_blank">五稜星之夢</a> 點燈', description: '在公園周邊欣賞護城河點燈。', stay: '約 1 小時', specialTags: [ { type: 'event', text: '✨ 冬季活動: 五稜星之夢' } ] },
+                 { time: '18:30', type: '🍽️', event: '晚餐 (選項A): <a href="https://www.google.com/maps/search/?api=1&query=Colz%20%E3%82%B3%E3%83%AB%E3%83%84%20%E5%87%BD%E9%A4%A8" target="_blank">Colz (コルツ)</a> (需預約)', description: '品嚐Tabelog高分的在地義大利麵。<span class="emphasis">【美食任務：義大利麵已達成】</span>', parkingInfo: "店家後方設有專用停車場。" },
+                 { time: '18:30', type: '🍽️', event: '晚餐 (選項B): <a href="https://www.google.com/maps/search/?api=1&query=%E3%82%AC%E3%82%B9%E3%83%88%20%E5%87%BD%E9%A4%A8%E9%8D%9B%E5%86%B6%E5%BA%97" target="_blank">ガスト (Gusto) 函館鍛治店</a>', description: '體驗日本家庭餐廳文化。<span class="emphasis">【美食任務：家庭餐廳已達成】</span>', parkingInfo: "設有專用停車場。" },
+                 { time: '20:30', type: '🏨', event: '返回飯店: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank">ラビスタ函館ベイ</a>'}
             ],
+             foodHighlights: [ // NEW FIELD
+                 { name: "味彩 (本店)", specialty: "函館鹽味拉麵代表", note: "午餐" },
+                 { name: "六花亭 (五稜郭店)", specialty: "喫茶室甜點/簡餐", note: "下午茶" },
+                 { name: "Colz (コルツ)", specialty: "Tabelog高分義大利麵", note: "晚餐選項 (需預約)" },
+                 { name: "ガスト (Gusto)", specialty: "家庭餐廳", note: "晚餐選項" }
+             ],
+             shoppingHighlights: [ // NEW FIELD
+                 { item: "六花亭 (五稜郭店)", location: "伴手禮最齊全" },
+                 { item: "五稜郭塔商店", location: "限定紀念品" }
+             ],
+             seasonalNotes: [ // NEW FIELD
+                 "『五稜星之夢』護城河點燈活動期間(12月-2月)。"
+             ],
+             budgetNotes: [ // NEW FIELD
+                 "使用『特級套票交通券』搭乘市電。",
+                 "若特級套票點數已用完，五稜郭塔(¥900)、奉行所(¥500)、味彩(¥750+)需另付費。"
+             ],
+             nearbySpots: [ // NEW FIELD
+                  { name: "北海道立函館美術館", note: "五稜郭公園旁，可安排於下午茶後。" }
+             ],
              intel: {
                   goryokaku_illumination: { title: '五稜星之夢 觀賞點', text: '「五稜星之夢」(12月-2月)點亮星形護城河。 傍晚在公園周圍散步即可欣賞，無需再次登塔。搭配雪景更美。'},
                   special_ticket_strategy: { title: '特級套票點數策略', text: '若前兩天已使用函館山(7點)+五稜郭塔(4點)，點數已用完。 今天參觀奉行所、味彩拉麵需另外付費。或者，可以調整點數用法，例如放棄其中一個點數景點，將點數用於味彩(3點)或奉行所(2點)。'}
@@ -817,12 +901,12 @@ const tripData = {
                      timeline: [
                          { time: '09:00', type: '☕', event: '早餐: 飯店 (La Vista 早餐)' },
                          { time: '09:30-10:10', type: '🚗', event: '租車/自駕前往大沼公園 (約40分鐘)' },
-                         { time: '10:10-14:10', type: '🏞️', event: '<a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E6%B2%BC%E5%9C%8B%E5%AE%9A%E5%85%AC%E5%9C%92" target="_blank" class="text-blue-600 hover:underline">大沼國定公園</a> 深度遊覽', awardHighlight: "日本新三景, 日本紅葉名所100選", description: '冬季雪地散策、欣賞駒岳火山與結冰湖景。', ticketInfo: "公園免費", stay: '約 4 小時', parkingInfo: "JR站對面有收費停車場 (¥400/次)。" },
+                         { time: '10:10-14:10', type: '🏞️', event: '<a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E6%B2%BC%E5%9C%8B%E5%AE%9A%E5%85%AC%E5%9C%92" target="_blank">大沼國定公園</a> 深度遊覽', awardHighlight: "日本新三景, 日本紅葉名所100選", description: '冬季雪地散策、欣賞駒岳火山與結冰湖景。', ticketInfo: "公園免費", stay: '約 4 小時', parkingInfo: "JR站對面有收費停車場 (¥400/次)。" },
                          { time: '14:10-14:30', type: '🚗', event: '駕車前往峠下總本店 (約15-20分鐘)' },
-                         { time: '14:30-15:30', type: '🍽️', event: '午餐: <a href="https://www.google.com/maps/search/?api=1&query=ドーミーインPREMIUM五稜郭" target="_blank" class="text-blue-600 hover:underline">幸運小丑漢堡 (峠下總本店)</a>', description: '前往最具特色的分店，與巨大紅椅子合照。', parkingInfo: "設有大型免費停車場。", specialTags: [ { type: 'recommendation', text: '🚗 自駕推薦特色分店' } ] },
+                         { time: '14:30-15:30', type: '🍽️', event: '午餐: <a href="https://www.google.com/maps/search/?api=1&query=ドーミーインPREMIUM五稜郭" target="_blank">幸運小丑漢堡 (峠下總本店)</a>', description: '前往最具特色的分店，與巨大紅椅子合照。', parkingInfo: "設有大型免費停車場。", specialTags: [ { type: 'recommendation', text: '🚗 自駕推薦特色分店' } ] },
                          { time: '15:30-16:30', type: '🚗', event: '移動: 返回函館市區'},
-                         { time: '18:00', type: '🍽️', event: '晚餐: <a href="https://www.google.com/maps/search/?api=1&query=%E7%82%AD%E7%81%AB%E7%87%92%E8%82%89%20%E6%B3%89%E5%91%B3%E4%BA%AD%20%E5%87%BD%E9%A4%A8" target="_blank" class="text-blue-600 hover:underline">炭火燒肉 泉味亭</a>', description: '搭市電或計程車前往五稜郭區域品嚐熟成和牛。<span class="emphasis">【美食任務：燒肉已達成】</span>', parkingInfo: "設有專屬停車場。", specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門餐廳' } ] },
-                         { time: '20:30', type: '🏨', event: '住宿: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank" class="text-blue-600 hover:underline">ラビスタ函館ベイ</a>'}
+                         { time: '18:00', type: '🍽️', event: '晚餐: <a href="https://www.google.com/maps/search/?api=1&query=%E7%82%AD%E7%81%AB%E7%87%92%E8%82%89%20%E6%B3%89%E5%91%B3%E4%BA%AD%20%E5%87%BD%E9%A4%A8" target="_blank">炭火燒肉 泉味亭</a>', description: '搭市電或計程車前往五稜郭區域品嚐熟成和牛。<span class="emphasis">【美食任務：燒肉已達成】</span>', parkingInfo: "設有專屬停車場。", specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門餐廳' } ] },
+                         { time: '20:30', type: '🏨', event: '住宿: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank">ラビスタ函館ベイ</a>'}
                      ]
                  },
                  optionB: {
@@ -830,14 +914,32 @@ const tripData = {
                      timeline: [
                         { time: '09:00', type: '☕', event: '早餐: 飯店 (La Vista 早餐)' },
                         { time: '09:30-10:30', type: '🚆', event: '移動: 搭乘市電至函館站，轉乘 JR特急北斗號 (函館→大沼公園)' },
-                        { time: '10:30-15:30', type: '🏞️', event: '<a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E6%B2%BC%E5%9C%8B%E5%AE%9A%E5%85%AC%E5%9C%92" target="_blank" class="text-blue-600 hover:underline">大沼國定公園</a> 深度遊覽', awardHighlight: "日本新三景, 日本紅葉名所100選", description: '冬季雪地散策、欣賞駒岳火山與結冰湖景。', ticketInfo: "公園免費", stay: '約 5 小時', parkingInfo: "JR站對面有收費停車場 (¥400/次)。" },
-                        { time: '中午', type: '🍽️', event: '午餐: 大沼公園周邊餐廳 或 <a href="https://www.google.com/maps/search/?api=1&query=%E6%B2%BC%E4%B9%8B%E5%AE%B6" target="_blank" class="text-blue-600 hover:underline">沼之家 (沼の家)</a> 糰子配熱飲' },
+                        { time: '10:30-15:30', type: '🏞️', event: '<a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E6%B2%BC%E5%9C%8B%E5%AE%9A%E5%85%AC%E5%9C%92" target="_blank">大沼國定公園</a> 深度遊覽', awardHighlight: "日本新三景, 日本紅葉名所100選", description: '冬季雪地散策、欣賞駒岳火山與結冰湖景。', ticketInfo: "公園免費", stay: '約 5 小時', parkingInfo: "JR站對面有收費停車場 (¥400/次)。" },
+                        { time: '中午', type: '🍽️', event: '午餐: 大沼公園周邊餐廳 或 <a href="https://www.google.com/maps/search/?api=1&query=%E6%B2%BC%E4%B9%8B%E5%AE%B6" target="_blank">沼之家 (沼の家)</a> 糰子配熱飲' },
                         { time: '15:30-16:30', type: '🚆', event: '移動: JR (大沼公園→函館) → 市電返回灣區'},
-                        { time: '18:00', type: '🍽️', event: '晚餐: <a href="https://www.google.com/maps/search/?api=1&query=%E7%82%AD%E7%81%AB%E7%87%92%E8%82%89%20%E6%B3%89%E5%91%B3%E4%BA%AD%20%E5%87%BD%E9%A4%A8" target="_blank" class="text-blue-600 hover:underline">炭火燒肉 泉味亭</a>', description: '搭市電或計程車前往五稜郭區域品嚐熟成和牛。<span class="emphasis">【美食任務：燒肉已達成】</span>', parkingInfo: "設有專屬停車場。", specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門餐廳' } ] },
-                        { time: '20:30', type: '🏨', event: '住宿: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank" class="text-blue-600 hover:underline">ラビスタ函館ベイ</a>'}
+                        { time: '18:00', type: '🍽️', event: '晚餐: <a href="https://www.google.com/maps/search/?api=1&query=%E7%82%AD%E7%81%AB%E7%87%92%E8%82%89%20%E6%B3%89%E5%91%B3%E4%BA%AD%20%E5%87%BD%E9%A4%A8" target="_blank">炭火燒肉 泉味亭</a>', description: '搭市電或計程車前往五稜郭區域品嚐熟成和牛。<span class="emphasis">【美食任務：燒肉已達成】</span>', parkingInfo: "設有專屬停車場。", specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門餐廳' } ] },
+                        { time: '20:30', type: '🏨', event: '住宿: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank">ラビスタ函館ベイ</a>'}
                      ]
                  }
             },
+             foodHighlights: [ // NEW FIELD
+                 { name: "沼之家 (沼の家)", specialty: "大沼糰子", note: "大沼公園必吃點心" },
+                 { name: "幸運小丑漢堡 (峠下總本店)", specialty: "巨大紅椅子特色分店", note: "午餐 (Option A - 自駕)" },
+                 { name: "炭火燒肉 泉味亭", specialty: "熟成和牛", note: "晚餐" }
+             ],
+             shoppingHighlights: [ // NEW FIELD
+                 { item: "幸運小丑漢堡 (峠下總本店)", location: "特色紀念品", note: "Option A 限定" }
+             ],
+             seasonalNotes: [ // NEW FIELD
+                  "冬季大沼公園注意保暖與路況。"
+             ],
+             budgetNotes: [ // NEW FIELD
+                 "租車費用 (Option A) 或 JR車票(函館-大沼公園來回約 ¥1140) + 市電車資 (Option B)。",
+                 "大沼公園腳踏車/遊船費用另計 (冬季可能不開放)。"
+             ],
+             nearbySpots: [ // NEW FIELD
+                  { name: "七飯町", note: "峠下總本店所在地，若自駕可稍作停留。" }
+             ],
             intel: {
                  togeshita_lp: { title: '峠下總本店 攻略 (選項A)', text: '此分店位於七飯町，從大沼公園開車約15-20分鐘，不在函館市區。其巨大椅子和獨特裝潢非常值得拍照留念，建議自駕旅客安排。'},
                  onuma_winter_activity: { title: '大沼公園 冬季活動', text: '冬季(12月)湖面可能開始結冰，腳踏車環湖需注意路面濕滑或積雪。部分遊覽船可能停駛。可享受雪地散策的寧靜氛圍。出發前確認當地狀況。' }
@@ -851,17 +953,40 @@ const tripData = {
             timeline: [
                 { time: '09:00', type: '☕', event: '早餐: 飯店 (La Vista 早餐)' },
                 { time: '10:00', type: '🚋', event: '搭乘市電 (魚市場通 → 湯の川温泉) (使用市電巴士共通一日券¥1000)'},
-                { time: '10:45-11:45', type: '⛩️', event: '溫泉區散策: <a href="https://www.google.com/maps/search/?api=1&query=%E6%B9%AF%E5%80%89%E7%A5%9E%E7%A4%BE" target="_blank" class="text-blue-600 hover:underline">湯倉神社</a>', description: '參拜溫泉守護神，體驗釣烏賊籤詩。', ticketInfo: "免費參拜", stay: '約 1 小時', parkingInfo: "設有大型免費專用停車場 (80台)。", specialTags: [ { type: 'recommendation', text: '🎯 必買推薦: 御神緣御守 / 釣烏賊籤詩' } ] },
-                { time: '11:45-12:45', type: '🐒', event: '<a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E5%B8%82%E7%86%B1%E5%B9%B6%E6%A4%8D%E7%89%A9%E5%9C%92" target="_blank" class="text-blue-600 hover:underline">函館市熱帶植物園</a>', description: '觀賞著名的猴子泡湯 (12/1開始)。', ticketInfo: "大人 300日圓", stay: '約 1 小時', parkingInfo: "設有免費停車場。", specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門打卡點 (冬季)' }, { type: 'event', text: '🐒 冬季活動: 猴子泡湯' } ] },
-                 { time: '13:00-14:00', type: '🍽️', event: '午餐: 湯之川溫泉區 <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E9%BA%B5%E5%BB%B3%20%E4%B8%80%E6%96%87%E5%AD%97%20%E6%B9%AF%E3%81%AE%E5%B7%9D" target="_blank" class="text-blue-600 hover:underline">一文字 拉麵</a> 或 其他餐廳' },
-                { time: '14:30-16:00', type: '⛪', event: '郊區巡禮: <a href="https://www.google.com/maps/search/?api=1&query=%E7%89%B9%E6%8B%89%E6%99%AE%E6%B4%BE%E5%A5%B3%E5%AD%90%E4%BF%AE%E9%81%93%E9%99%A2" target="_blank" class="text-blue-600 hover:underline">特拉普派女子修道院</a>', description: '搭乘巴士或租車前往，參觀紅磚修道院。(需查巴士時刻)', ticketInfo: "庭園免費", stay: '約 1.5 小時', parkingInfo: "對面「市民之森」有收費停車場 (¥200/次)。", specialTags: [ { type: 'recommendation', text: '🎯 必買推薦: Madalena 蛋糕捲' } ] },
-                { time: '16:00', type: '🍦', event: '點心/下午茶: <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E5%B8%82%E6%B0%91%E3%81%AE%E6%A3%AE%20%E3%82%BD%E3%83%95%E3%83%88%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%A0" target="_blank" class="text-blue-600 hover:underline">市民之森 霜淇淋</a> & 購買修道院餅乾', specialTags: [ { type: 'recommendation', text: '🍦 必吃推薦: 牛奶霜淇淋' } ] },
-                { time: '17:00-18:00', type: '⛩️', event: '深度參拜: <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E5%85%AB%E5%B9%A1%E5%AE%AE" target="_blank" class="text-blue-600 hover:underline">函館八幡宮</a>', description: '搭乘巴士/市電或租車前往。(市電需搭到「谷地頭」)', ticketInfo: "免費參拜 (社務所至17:00)", stay: '約 1 小時', parkingInfo: "設有免費停車場 (80台)。" },
-                { time: '18:30', type: '✨', event: '觀賞 <a href="https://www.google.com/maps/search/?api=1&query=羽根屋+本店8" target="_blank" class="text-blue-600 hover:underline">湯之川 冬之燈</a>', description: '感受溫泉街的冬季燈飾氛圍。', stay: '約 30 分鐘', specialTags: [ { type: 'event', text: '✨ 冬季活動: 湯之川 冬之燈' } ] },
-                { time: '19:00', type: '🍽️', event: '晚餐: 返回灣區/函館站前用餐 (e.g., <a href="https://www.google.com/maps/search/?api=1&query=羽根屋+本店6" target="_blank" class="text-blue-600 hover:underline">大門橫丁</a>)' },
-                { time: '21:00', type: '🏨', event: '住宿: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank" class="text-blue-600 hover:underline">ラビスタ函館ベイ</a>'}
+                { time: '10:45-11:45', type: '⛩️', event: '溫泉區散策: <a href="https://www.google.com/maps/search/?api=1&query=%E6%B9%AF%E5%80%89%E7%A5%9E%E7%A4%BE" target="_blank">湯倉神社</a>', description: '參拜溫泉守護神，體驗釣烏賊籤詩。', ticketInfo: "免費參拜", stay: '約 1 小時', parkingInfo: "設有大型免費專用停車場 (80台)。", specialTags: [ { type: 'recommendation', text: '🎯 必買推薦: 御神緣御守 / 釣烏賊籤詩' } ] },
+                { time: '11:45-12:45', type: '🐒', event: '<a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E5%B8%82%E7%86%B1%E5%B9%B6%E6%A4%8D%E7%89%A9%E5%9C%92" target="_blank">函館市熱帶植物園</a>', description: '觀賞著名的猴子泡湯 (12/1開始)。', ticketInfo: "大人 300日圓", stay: '約 1 小時', parkingInfo: "設有免費停車場。", specialTags: [ { type: 'ig_hotspot', text: '📸 IG 熱門打卡點 (冬季)' }, { type: 'event', text: '🐒 冬季活動: 猴子泡湯' } ] },
+                 { time: '13:00-14:00', type: '🍽️', event: '午餐: 湯之川溫泉區 <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E9%BA%B5%E5%BB%B3%20%E4%B8%80%E6%96%87%E5%AD%97%20%E6%B9%AF%E3%81%AE%E5%B7%9D" target="_blank">一文字 拉麵</a> 或 其他餐廳' },
+                { time: '14:30-16:00', type: '⛪', event: '郊區巡禮: <a href="https://www.google.com/maps/search/?api=1&query=%E7%89%B9%E6%8B%89%E6%99%AE%E6%B4%BE%E5%A5%B3%E5%AD%90%E4%BF%AE%E9%81%93%E9%99%A2" target="_blank">特拉普派女子修道院</a>', description: '搭乘巴士或租車前往，參觀紅磚修道院。(需查巴士時刻)', ticketInfo: "庭園免費", stay: '約 1.5 小時', parkingInfo: "對面「市民之森」有收費停車場 (¥200/次)。", specialTags: [ { type: 'recommendation', text: '🎯 必買推薦: Madalena 蛋糕捲' } ] },
+                { time: '16:00', type: '🍦', event: '點心/下午茶: <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E5%B8%82%E6%B0%91%E3%81%AE%E6%A3%AE%20%E3%82%BD%E3%83%95%E3%83%88%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%A0" target="_blank">市民之森 霜淇淋</a> & 購買修道院餅乾', specialTags: [ { type: 'recommendation', text: '🍦 必吃推薦: 牛奶霜淇淋' } ] },
+                { time: '17:00-18:00', type: '⛩️', event: '深度參拜: <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E5%85%AB%E5%B9%A1%E5%AE%AE" target="_blank">函館八幡宮</a>', description: '搭乘巴士/市電或租車前往。(市電需搭到「谷地頭」)', ticketInfo: "免費參拜 (社務所至17:00)", stay: '約 1 小時', parkingInfo: "設有免費停車場 (80台)。" },
+                { time: '18:30', type: '✨', event: '觀賞 <a href="https://www.google.com/maps/search/?api=1&query=羽根屋+本店8" target="_blank">湯之川 冬之燈</a>', description: '感受溫泉街的冬季燈飾氛圍。', stay: '約 30 分鐘', specialTags: [ { type: 'event', text: '✨ 冬季活動: 湯之川 冬之燈' } ] },
+                { time: '19:00', type: '🍽️', event: '晚餐: 返回灣區/函館站前用餐 (e.g., <a href="https://www.google.com/maps/search/?api=1&query=羽根屋+本店6" target="_blank">大門橫丁</a>)' },
+                { time: '21:00', type: '🏨', event: '住宿: <a href="https://www.google.com/maps/search/?api=1&query=La%20Vista%20%E5%87%BD%E9%A4%A8%E7%81%A3" target="_blank">ラビスタ函館ベイ</a>'}
             ],
-             intel: {
+             foodHighlights: [ // NEW FIELD
+                 { name: "一文字 (函館本店)", specialty: "鹽味拉麵名店", note: "午餐" },
+                 { name: "市民之森 霜淇淋", specialty: "號稱函館第一牛奶霜淇淋", note: "點心/下午茶" },
+                 { name: "大門橫丁", specialty: "居酒屋小巷", note: "晚餐選項" }
+             ],
+             shoppingHighlights: [ // NEW FIELD
+                 { item: "特拉普派女子修道院商店", location: "Madalena蛋糕捲、白巧克力" },
+                 { item: "湯倉神社", location: "御神緣御守、大丈夫御守" },
+                 { item: "函館護國神社", location: "貓頭鷹御守" },
+                 { item: "函館八幡宮", location: "各式御守" }
+             ],
+             seasonalNotes: [ // NEW FIELD
+                 "『猴子泡溫泉』進行中 (12/1起)。",
+                 "『湯之川 冬之燈』活動進行中。"
+             ],
+             budgetNotes: [ // NEW FIELD
+                 "建議購買『市電巴士共通一日券』(¥1000)。",
+                 "熱帶植物園門票 ¥300。",
+                 "修道院停車費 ¥200。"
+             ],
+             nearbySpots: [ // NEW FIELD
+                  // Potential spots in Yunokawa area if time permits
+             ],
+            intel: {
                  trappistine_hack: { title: '修道院攻略 & 交通', text: '修道院位置較偏遠，從湯之川搭乘巴士約需20-30分鐘，班次可能不多，需預先查好時刻表。自駕最為方便。必買伴手禮(餅乾/蛋糕捲)在入口商店。' },
                   bus_pass_option: { title: '交通選項：市電巴士共通券', text: '今日行程橫跨市電(湯之川)與巴士(修道院/八幡宮)，購買市電巴士共通一日券(¥1000)可能是最划算的選擇。' }
              },
@@ -872,7 +997,7 @@ const tripData = {
         day7: { // Dec 7th (Thu)
             title: '歸鄉・帶著北國的回憶', date: 'Day 7 (12/07 週四)', location: '灣區 → 函館機場', timeAnalysis: { travel: 1.0, activity: 1.0 },
             timeline: [
-                { time: '08:00', type: '☕', event: '早餐: 飯店 (La Vista 早餐) 或 <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E6%9C%9D%E5%B8%82" target="_blank" class="text-blue-600 hover:underline">函館朝市</a> 最後巡禮' },
+                { time: '08:00', type: '☕', event: '早餐: 飯店 (La Vista 早餐) 或 <a href="https://www.google.com/maps/search/?api=1&query=%E5%87%BD%E9%A4%A8%E6%9C%9D%E5%B8%82" target="_blank">函館朝市</a> 最後巡禮' },
                 { time: '09:30', type: '🏨', event: '飯店Check-out' },
                 { time: '10:00-11:00', type: '🛍️', event: '最後採買: 函館站前商店 或 機場商店', description: '進行最後的伴手禮補給。(機場可用特級套票折抵)' },
                 { time: '11:00', type: '🚗', event: '租車歸還 (若有)' },
@@ -880,6 +1005,20 @@ const tripData = {
                 { time: '12:00', type: '🍽️', event: '午餐: 函館機場餐廳 (2025/8月後有新美食街) 或 便利商店' },
                 { time: '14:00', type: '✈️', event: '航班起飛: HKD → TPE' }
             ],
+             foodHighlights: [ // NEW FIELD
+                 { name: "La Vista 函館灣 早餐", specialty: "海鮮丼飯自助", note: "最後享用" },
+                 { name: "函館機場美食街 (2025/8月後)", specialty: "函館/道南特色美食", note: "午餐選項" }
+             ],
+             shoppingHighlights: [ // NEW FIELD
+                 { item: "函館機場國內線", location: "Snaffle's, 六花亭, LeTAO 等", note: "最後補貨機會" }
+             ],
+             seasonalNotes: [ /* None specific to departure day */ ],
+             budgetNotes: [ // NEW FIELD
+                 "市電/計程車 (灣區→函館站) 費用",
+                 "機場巴士 約¥700",
+                 "午餐費用"
+             ],
+             nearbySpots: [ /* None specific to departure day */ ],
              intel: {
                  airport_souvenir: { title: '機場伴手禮補給', text: '函館機場國內線航廈伴手禮店齊全，Snaffle\'s、六花亭、LeTAO等皆有設櫃。 可使用函館特級套票在指定店家折抵消費。' },
                   airport_foodcourt: { title: '機場餐飲新選擇', text: '2025年8月後，國內線3樓新設美食街，集結函館及道南特色餐廳，提供更多用餐選擇。'}

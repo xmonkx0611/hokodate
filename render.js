@@ -1,5 +1,5 @@
 // --- RENDER SCRIPT ---
-// Version 9.1.1: Refactored daily timeline to render special tags from data.js
+// Version 9.1.2: Added rendering for enriched daily data fields (food, shopping, seasonal, etc.)
 
 document.addEventListener('DOMContentLoaded', () => {
     // Check if tripData is loaded
@@ -317,7 +317,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function initAwards() {
-        // ... (existing initAwards function remains the same)
         if (!tripData.awardsData) return;
 
         const top100Container = document.getElementById('top-100-container');
@@ -531,7 +530,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function initDaily() {
-        // ... (existing initDaily function structure remains the same)
          const dayNav = document.getElementById('day-nav');
         document.getElementById('daily-title').innerText = `每日行程 (${Object.keys(tripData.dailyData).length}天)`;
 
@@ -566,22 +564,70 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- UTILITY: Create Highlight Section ---
+    // Helper function to create the HTML for the new daily sections
+    function createHighlightSection(title, icon, items, itemRenderer) {
+        if (!items || items.length === 0) return '';
+        return `
+            <div class="mt-6 bg-gray-50 p-4 rounded-lg border">
+                <h4 class="font-bold text-lg mb-3 flex items-center"><span class="text-xl mr-2">${icon}</span> ${title}</h4>
+                <div class="space-y-2">
+                    ${items.map(itemRenderer).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+
+    // --- HEAVILY UPDATED: renderDailyTimeline ---
     function renderDailyTimeline(day) {
         const data = tripData.dailyData[`day${day}`];
         const dailyContent = document.getElementById('daily-content');
         if (!data) { dailyContent.innerHTML = `<p>本日行程資料不存在。</p>`; return; }
 
-        let timelineHtml = '';
-        if (data.options) {
-            timelineHtml += `<div class="flex justify-center flex-wrap gap-2 mb-4" id="option-tabs-${day}">`;
-            Object.keys(data.options).forEach((key, index) => {
-                timelineHtml += `<button data-option="${key}" class="option-tab py-2 px-4 text-sm font-semibold rounded-md border hover:bg-gray-100 transition-colors ${index === 0 ? 'option-tab-active bg-blue-100 border-blue-300' : 'border-gray-300'}">${data.options[key].label}</button>`;
-            });
-            timelineHtml += `</div><div id="timeline-container-${day}"></div>`;
-        } else {
-            timelineHtml = `<div id="timeline-container-${day}"></div>`;
-        }
+        let timelineHtml = ''; // For timeline container
+        let optionsHtml = '';  // For option tabs
 
+        if (data.options) {
+            optionsHtml += `<div class="flex justify-center flex-wrap gap-2 mb-4" id="option-tabs-${day}">`;
+            Object.keys(data.options).forEach((key, index) => {
+                optionsHtml += `<button data-option="${key}" class="option-tab py-2 px-4 text-sm font-semibold rounded-md border hover:bg-gray-100 transition-colors ${index === 0 ? 'option-tab-active bg-blue-100 border-blue-300' : 'border-gray-300'}">${data.options[key].label}</button>`;
+            });
+            optionsHtml += `</div>`;
+        }
+        timelineHtml = `<div id="timeline-container-${day}" class="mb-6"></div>`; // Container for timeline content
+
+
+        // --- START: Generate HTML for NEW Fields ---
+        let foodHighlightsHtml = createHighlightSection('🍔 當日美食焦點', '🍔', data.foodHighlights, item => `
+            <div class="text-sm border-b pb-1 last:border-b-0">
+                <span class="font-semibold">${item.name}:</span> ${item.specialty} ${item.note ? `(${item.note})` : ''}
+            </div>
+        `);
+
+        let shoppingHighlightsHtml = createHighlightSection('🛍️ 當日購物/伴手禮', '🛍️', data.shoppingHighlights, item => `
+            <div class="text-sm border-b pb-1 last:border-b-0">
+                <span class="font-semibold">${item.item}</span> @ ${item.location} ${item.note ? `<span class="text-xs italic text-gray-500">(${item.note})</span>` : ''}
+            </div>
+        `);
+
+        let seasonalNotesHtml = createHighlightSection('☀️ 當日季節提醒', '☀️', data.seasonalNotes, note => `
+            <p class="text-sm text-blue-700">${note}</p>
+        `);
+
+        let budgetNotesHtml = createHighlightSection('💰 當日預算/花費提醒', '💰', data.budgetNotes, note => `
+            <p class="text-sm text-red-600">${note}</p>
+        `);
+
+        let nearbySpotsHtml = createHighlightSection('📍 周邊順遊點', '📍', data.nearbySpots, spot => `
+            <div class="text-sm border-b pb-1 last:border-b-0">
+                <span class="font-semibold">${spot.name}</span> ${spot.note ? `- ${spot.note}` : ''}
+            </div>
+        `);
+        // --- END: Generate HTML for NEW Fields ---
+
+
+        // --- Render Intel & Insights ---
         const allIntel = { ...(data.intel || {}), ...(data.insights || {}) };
         let intelHtml = Object.keys(allIntel).length > 0 ? '<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">' : '';
         for (const intelItem of Object.values(allIntel)) {
@@ -597,46 +643,53 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (Object.keys(allIntel).length > 0) { intelHtml += '</div>'; }
 
+        // --- Assemble Final HTML for dailyContent ---
         dailyContent.innerHTML = `
             <div class="bg-white p-4 md:p-6 rounded-lg shadow-lg">
-                <div class="text-center mb-6"><h3 class="text-2xl font-bold">${data.title}</h3><p class="text-md text-gray-500">${data.date || ''}</p></div>
+                <div class="text-center mb-6">
+                    <h3 class="text-2xl font-bold">${data.title}</h3>
+                    <p class="text-md text-gray-500">${data.date || ''}</p>
+                </div>
+                ${optionsHtml}  
                 ${timelineHtml}
+                ${foodHighlightsHtml}
+                ${shoppingHighlightsHtml}
+                ${seasonalNotesHtml}
+                ${budgetNotesHtml}
+                ${nearbySpotsHtml}
             </div>
             ${intelHtml}
         `;
 
+        // --- Timeline Rendering Logic (remains the same as 9.1.1) ---
         const renderTimelineContent = (timelineData) => {
              if(!timelineData) {
                  document.getElementById(`timeline-container-${day}`).innerHTML = '<p class="text-center text-gray-500">此選項無時間軸資料。</p>';
                  return;
              }
              document.getElementById(`timeline-container-${day}`).innerHTML = `<div class="relative pl-8">${timelineData.map(item => {
-                // --- START NEW Special Tag Rendering Logic ---
+                // Special Tag Rendering Logic
                 let extraInfoHtml = '';
                 if (item.specialTags && Array.isArray(item.specialTags)) {
                     item.specialTags.forEach(tag => {
-                        let tagClass = 'tag-default'; // Default style
+                        let tagClass = 'tag-default';
                         switch (tag.type) {
                             case 'pilgrimage': tagClass = 'tag-pilgrimage'; break;
                             case 'recommendation': tagClass = 'tag-recommendation'; break;
                             case 'ig_hotspot': tagClass = 'tag-ig_hotspot'; break;
                             case 'event': tagClass = 'tag-event'; break;
-                            // Add more types and corresponding CSS classes if needed
                         }
-                        // Ensure tag.text exists before appending
                         if (tag.text) {
                             extraInfoHtml += `<p class="text-xs font-medium mt-2 p-2 rounded-md ${tagClass}">${tag.text}</p>`;
                         }
                     });
                 }
-                // --- END NEW Special Tag Rendering Logic ---
-
-                // --- REMOVED Old Hardcoded Logic for pilgrimage, recommendation, ig_hotspot ---
-
+                // Other HTML vars (awardHtml, parkingHtml, ticketHtml)
                 let awardHtml = item.awardHighlight ? `<p class="text-sm text-amber-600 font-bold mt-2">🏆 ${item.awardHighlight}</p>` : '';
                 let parkingHtml = item.parkingInfo ? `<p class="text-sm text-gray-500 mt-1 bg-gray-100 p-2 rounded-md">🅿️ <span class="font-semibold">停車資訊:</span> ${item.parkingInfo}</p>` : '';
                 let ticketHtml = item.ticketInfo ? `<p class="text-sm text-green-600 mt-1">🎟️ <span class="font-semibold">票務資訊:</span> ${item.ticketInfo}</p>` : '';
 
+                // Return item HTML
                 return `
                 <div class="timeline-item relative pb-8">
                     <div class="timeline-icon text-lg">${item.type}</div>
@@ -644,7 +697,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p class="font-bold text-gray-800">${item.time}</p>
                         <p class="text-gray-700">${item.event}</p>
                         <p class="text-sm text-gray-500 italic mt-1">${item.description || ''}</p>
-                        <div class="mt-1 space-y-1">${extraInfoHtml}</div> 
+                        <div class="mt-1 space-y-1">${extraInfoHtml}</div>
                         ${awardHtml}
                         ${item.cost ? `<p class="text-sm text-red-500 mt-1">費用: ${item.cost}</p>` : ''}
                         ${item.stay ? `<p class="text-sm text-blue-500 mt-1">建議停留: ${item.stay}</p>` : ''}
@@ -655,28 +708,29 @@ document.addEventListener('DOMContentLoaded', () => {
             }).join('')}</div>`;
         }
 
+        // --- Option Tabs Logic (remains the same as 9.1.1) ---
         if (data.options) {
             const optionTabs = document.getElementById(`option-tabs-${day}`);
-             // Remove existing listeners before adding new ones to prevent duplicates on re-render
-            optionTabs.replaceWith(optionTabs.cloneNode(true));
+            optionTabs.replaceWith(optionTabs.cloneNode(true)); // Re-clone to remove old listeners
             const newOptionTabs = document.getElementById(`option-tabs-${day}`);
 
             newOptionTabs.addEventListener('click', (e) => {
                 if(e.target.tagName === 'BUTTON') {
                     const optionKey = e.target.dataset.option;
                     renderTimelineContent(data.options[optionKey].timeline);
+                    // Style update logic...
                     newOptionTabs.querySelectorAll('button').forEach(b => {
                         b.classList.remove('option-tab-active', 'bg-blue-100', 'border-blue-300');
                         b.classList.add('border-gray-300');
                     });
                     e.target.classList.add('option-tab-active', 'bg-blue-100', 'border-blue-300');
-                     e.target.classList.remove('border-gray-300');
+                    e.target.classList.remove('border-gray-300');
                 }
             });
-            // Initial render of the first option
+            // Initial render
             const firstOptionKey = Object.keys(data.options)[0];
              renderTimelineContent(data.options[firstOptionKey].timeline);
-             // Ensure the first tab button is styled correctly initially
+             // Initial style...
              const firstTabButton = newOptionTabs.querySelector(`button[data-option="${firstOptionKey}"]`);
              if (firstTabButton) {
                 newOptionTabs.querySelectorAll('button').forEach(b => {
@@ -691,6 +745,8 @@ document.addEventListener('DOMContentLoaded', () => {
              renderTimelineContent(data.timeline);
         }
     }
+
+
     // --- NEW: Render Local Tips ---
     function initLocalTips() {
          const tabsContainer = document.getElementById('local-tips-tabs');
@@ -797,7 +853,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function initPrep() {
-        // ... (existing initPrep function remains the same, check data source if needed)
          const prepData = tripData.prepList;
         if (prepData) {
             document.getElementById('prep-description').innerHTML = prepData.description || '';
