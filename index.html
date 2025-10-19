@@ -1,81 +1,40 @@
 <!DOCTYPE html>
-
 <html lang="zh-Hant" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>通用旅遊行程儀表板 v8.5</title>
+    <title>通用旅遊行程儀表板 v9.1</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Noto Sans TC', sans-serif;
-            background-color: #F5F5F0; /* Light Beige */
-        }
-        .main-nav-active {
-            color: #2D3748; /* Slate Gray Dark */
-            border-bottom-color: #4A90E2; /* A slightly brighter Slate Blue for accent */
-        }
-        .main-nav-item {
-            transition: all 0.2s ease-in-out;
-        }
-        .day-nav-active {
-            background-color: #4A5568; /* Slate Gray */
-            color: white;
-        }
-        .option-tab-active {
-            background-color: #63B3ED; /* Muted Teal */
-            color: white;
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -1px;
-            top: 20px;
-            bottom: -20px;
-            width: 2px;
-            background-color: #E2E8F0;
-        }
-        .timeline-item:last-child::before {
-            display: none;
-        }
-        .timeline-icon {
-            position: absolute;
-            left: -16px;
-            top: 10px;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #4A5568;
-            color: white;
-            z-index: 10;
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            height: 40vh;
-            max-height: 400px;
-        }
-        .seasonal-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .seasonal-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        .emphasis {
-            font-weight: 700;
-            color: #2D3748;
-        }
-        .award-card {
-            border-left-width: 4px;
-        }
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #F5F5F0; }
+        .main-nav-active { color: #2D3748; border-bottom-color: #4A90E2; }
+        .main-nav-item { transition: all 0.2s ease-in-out; }
+        .day-nav-active { background-color: #4A5568; color: white; }
+        .option-tab-active { background-color: #63B3ED; color: white; }
+        .timeline-item::before { content: ''; position: absolute; left: -1px; top: 20px; bottom: -20px; width: 2px; background-color: #E2E8F0; }
+        .timeline-item:last-child::before { display: none; }
+        .timeline-icon { position: absolute; left: -16px; top: 10px; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background-color: #4A5568; color: white; z-index: 10; }
+        .chart-container { position: relative; width: 100%; height: 40vh; max-height: 400px; }
+        .seasonal-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .seasonal-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .emphasis { font-weight: 700; color: #2D3748; }
+        .award-card { border-left-width: 4px; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .tab-button { background-color: #E2E8F0; color: #4A5568; padding: 8px 16px; border-radius: 4px; cursor: pointer; transition: background-color 0.2s; }
+        .tab-button.active { background-color: #4A5568; color: white; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        /* Style for Special Tags */
+        .tag-pilgrimage { background-color: #E9D5FF; color: #5B21B6; border-left: 3px solid #7E22CE; } /* Purple */
+        .tag-recommendation { background-color: #FEF3C7; color: #92400E; border-left: 3px solid #D97706; } /* Amber */
+        .tag-ig_hotspot { background-color: #CFFAFE; color: #0E7490; border-left: 3px solid #06B6D4; } /* Cyan */
+        .tag-event { background-color: #FEE2E2; color: #991B1B; border-left: 3px solid #DC2626; } /* Red */
+        .tag-default { background-color: #F3F4F6; color: #374151; border-left: 3px solid #6B7280; } /* Gray */
+
     </style>
 </head>
 <body class="antialiased text-gray-700">
@@ -84,12 +43,16 @@
         <div class="container mx-auto px-4 py-3">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <h1 id="main-title" class="text-2xl font-bold text-gray-800">載入中...</h1>
-                <nav id="main-nav" class="flex flex-wrap justify-center space-x-2 md:space-x-4 mt-2 md:mt-0">
+                <nav id="main-nav" class="flex flex-wrap justify-center space-x-1 md:space-x-2 mt-2 md:mt-0 text-sm md:text-base">
                     <button data-section="overview" class="main-nav-item text-gray-500 font-semibold py-2 px-2 border-b-4 border-transparent hover:text-gray-800 hover:border-gray-300">行程總覽</button>
                     <button data-section="themed-guides" class="main-nav-item text-gray-500 font-semibold py-2 px-2 border-b-4 border-transparent hover:text-gray-800 hover:border-gray-300">主題攻略</button>
+                    <button data-section="food-guide" class="main-nav-item text-gray-500 font-semibold py-2 px-2 border-b-4 border-transparent hover:text-gray-800 hover:border-gray-300">美食指南</button>
+                    <button data-section="shopping-guide" class="main-nav-item text-gray-500 font-semibold py-2 px-2 border-b-4 border-transparent hover:text-gray-800 hover:border-gray-300">購物攻略</button>
                     <button data-section="awards" class="main-nav-item text-gray-500 font-semibold py-2 px-2 border-b-4 border-transparent hover:text-gray-800 hover:border-gray-300">百選榮耀</button>
+                    <button data-section="event-calendar" class="main-nav-item text-gray-500 font-semibold py-2 px-2 border-b-4 border-transparent hover:text-gray-800 hover:border-gray-300">活動月曆</button>
                     <button data-section="transport" class="main-nav-item text-gray-500 font-semibold py-2 px-2 border-b-4 border-transparent hover:text-gray-800 hover:border-gray-300">交通住宿</button>
                     <button data-section="daily" class="main-nav-item text-gray-500 font-semibold py-2 px-2 border-b-4 border-transparent hover:text-gray-800 hover:border-gray-300">每日行程</button>
+                    <button data-section="local-tips" class="main-nav-item text-gray-500 font-semibold py-2 px-2 border-b-4 border-transparent hover:text-gray-800 hover:border-gray-300">在地情報</button>
                     <button data-section="prep" class="main-nav-item text-gray-500 font-semibold py-2 px-2 border-b-4 border-transparent hover:text-gray-800 hover:border-gray-300">行前準備</button>
                 </nav>
             </div>
@@ -97,13 +60,12 @@
     </header>
 
     <main class="container mx-auto p-4 md:p-8">
-        
+
         <section id="overview" class="main-section space-y-8">
             <h2 class="text-3xl font-bold border-b-2 pb-2">行程總覽</h2>
-            
             <div class="bg-white p-6 rounded-lg shadow-lg">
                 <h3 class="text-xl font-semibold mb-4">每日 Chill 指數分析 (活動 vs. 移動時間)</h3>
-                <p class="text-gray-600 mb-4">此圖表分析每日「活動時間」與「交通移動時間」的佔比。藍色部分越高，代表當日行程越悠閒 (Chill)；紅色部分越高，則代表該日為長途移動日，需做好相應準備。透過此圖，您可以快速掌握整趟旅程的節奏與強度分佈。</p>
+                <p class="text-gray-600 mb-4">此圖表分析每日「活動時間」與「交通移動時間」的佔比。藍色部分越高，代表當日行程越悠閒 (Chill)；紅色部分越高，則代表該日為長途移動日或需多次市區移動。透過此圖，您可以快速掌握整趟旅程的節奏與強度分佈。</p>
                 <div class="chart-container">
                     <canvas id="overviewChart"></canvas>
                 </div>
@@ -126,36 +88,85 @@
                 </div>
         </section>
 
+        <section id="food-guide" class="main-section hidden space-y-8">
+             <h2 class="text-3xl font-bold border-b-2 pb-2">美食指南</h2>
+             <div class="bg-white p-6 rounded-lg shadow-lg">
+                <p class="text-gray-600 mb-6">探索當地新鮮的海產和獨特的在地美食。此頁面根據料理類別，為您彙整指南中推薦的餐廳，方便快速查找。</p>
+             </div>
+             <div id="food-guide-container" class="space-y-6">
+             </div>
+        </section>
+
+        <section id="shopping-guide" class="main-section hidden space-y-8">
+             <h2 class="text-3xl font-bold border-b-2 pb-2">購物攻略</h2>
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                 <p class="text-gray-600 mb-6">從經典甜點到在地限定的特色商品，這裡為您整理詳細的伴手禮清單與推薦購物地點。</p>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">🎁 必買伴手禮</h3>
+                <div id="souvenirs-detailed-list" class="space-y-4">
+                </div>
+              </div>
+               <div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4 mt-8">🛍️ 推薦購物地點</h3>
+                <div id="shopping-locations-list" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                </div>
+              </div>
+        </section>
+
         <section id="awards" class="main-section hidden space-y-8">
              <h2 class="text-3xl font-bold border-b-2 pb-2">百選榮耀</h2>
              <div class="bg-white p-6 rounded-lg shadow-lg">
-                <p class="text-gray-600 mb-6">本趟旅程將探訪眾多獲得「日本百選」或「日本三大」認證的景點。此頁面為您彙整這些榮耀認證，讓您對行程的含金量一目了然。</p>
+                 <p class="text-gray-600 mb-6">本趟旅程將探訪眾多獲得官方認證的景點與特色。此頁面為您彙整這些榮耀認證，讓您對行程的亮點一目了然。</p>
              </div>
              <div>
-                <h3 class="text-2xl font-bold text-gray-800 mb-4">🏆 日本三大系列</h3>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">🏆 世界/日本/地區 三大系列</h3>
                 <div id="great-three-container" class="grid grid-cols-1 lg:grid-cols-2 gap-6"></div>
              </div>
              <div>
-                <h3 class="text-2xl font-bold text-gray-800 mb-4">🏅 日本百選系列</h3>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4 mt-8">🏅 日本百選系列</h3>
                 <div id="top-100-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+             </div>
+        </section>
+
+        <section id="event-calendar" class="main-section hidden space-y-8">
+             <h2 class="text-3xl font-bold border-b-2 pb-2">活動月曆</h2>
+             <div class="bg-white p-6 rounded-lg shadow-lg">
+                 <p class="text-gray-600 mb-6">探索當地一年四季的精彩活動。這裡整理了主要的季節性祭典、點燈與特殊活動，方便您規劃行程時參考。（實際日期請以官方公告為準）</p>
+                 <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="p-3 font-semibold">活動名稱</th>
+                                <th class="p-3 font-semibold">期間</th>
+                                <th class="p-3 font-semibold">地點</th>
+                                <th class="p-3 font-semibold">類型</th>
+                                <th class="p-3 font-semibold">備註</th>
+                            </tr>
+                        </thead>
+                        <tbody id="event-calendar-table">
+                        </tbody>
+                    </table>
+                 </div>
              </div>
         </section>
 
         <section id="transport" class="main-section hidden space-y-8">
             <h2 class="text-3xl font-bold border-b-2 pb-2">交通住宿</h2>
-            <div id="accommodation-section" class="bg-white p-6 rounded-lg shadow-lg hidden">
-                 <h3 class="text-xl font-semibold mb-4">住宿一覽表 & 生活機能分析</h3>
+            <div id="accommodation-section" class="bg-white p-6 rounded-lg shadow-lg">
+                 <h3 class="text-xl font-semibold mb-4">本次住宿點 & 機能分析</h3>
                  <div id="accommodation-list" class="space-y-6"></div>
             </div>
-            <div id="transport-pass-section" class="bg-white p-6 rounded-lg shadow-lg hidden">
-                 <h3 id="transport-pass-title" class="text-xl font-semibold mb-4"></h3>
-                 <div id="transport-pass-details"></div>
+            <div id="transport-passes-section" class="bg-white p-6 rounded-lg shadow-lg">
+                 <h3 class="text-xl font-semibold mb-4">交通票券攻略</h3>
+                 <div id="transport-passes-content" class="space-y-6">
+                 </div>
             </div>
             <div id="transport-analysis-section" class="bg-white p-6 rounded-lg shadow-lg border-l-4 border-blue-500 hidden">
-                <h3 class="text-xl font-semibold mb-4 text-gray-800">JR Pass 最大效益分析 (省錢策略)</h3>
+                <h3 class="text-xl font-semibold mb-4 text-gray-800">票券效益分析 (省錢策略)</h3>
                 <div id="transport-analysis-content"></div>
             </div>
-             <div id="transport-summary-section" class="bg-white p-6 rounded-lg shadow-lg hidden">
+             <div id="transport-summary-section" class="bg-white p-6 rounded-lg shadow-lg">
                  <h3 class="text-xl font-semibold mb-4">主要交通摘要</h3>
                  <div class="overflow-x-auto">
                     <table class="w-full text-left">
@@ -163,25 +174,61 @@
                             <tr class="bg-gray-100">
                                 <th class="p-3 font-semibold">天數</th>
                                 <th class="p-3 font-semibold">路線</th>
-                                <th class="p-3 font-semibold">交通/車次</th>
-                                <th class="p-3 font-semibold">時刻</th>
-                                <th class="p-3 font-semibold">費用</th>
+                                <th class="p-3 font-semibold">交通</th>
+                                <th class="p-3 font-semibold">時間</th>
+                                <th class="p-3 font-semibold">費用估計</th>
                             </tr>
                         </thead>
                         <tbody id="transport-summary-table"></tbody>
                     </table>
                 </div>
             </div>
-            <div id="transport-tactic-section" class="bg-white p-6 rounded-lg shadow-lg hidden">
+            <div id="transport-tactic-section" class="bg-white p-6 rounded-lg shadow-lg">
                 <h3 class="text-xl font-semibold mb-4">交通戰術建議</h3>
                 <ul id="transport-tactic-list" class="list-disc list-inside space-y-2 text-gray-700"></ul>
             </div>
+             <div id="recommended-accommodation-section" class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                 <h3 class="text-xl font-semibold mb-4">其他推薦住宿 (指南參考)</h3>
+                 <p class="text-gray-600 mb-4 text-sm">雖然本次行程固定住宿，但指南中提及多家人氣飯店，可供未來或他人參考。</p>
+                 <div id="recommended-accommodation-list" class="space-y-4">
+                 </div>
+             </div>
         </section>
 
         <section id="daily" class="main-section hidden space-y-8">
             <h2 id="daily-title" class="text-3xl font-bold border-b-2 pb-2">每日行程</h2>
             <nav id="day-nav" class="flex flex-wrap justify-center bg-white p-2 rounded-lg shadow-md gap-1"></nav>
             <div id="daily-content" class="mt-6"></div>
+        </section>
+
+        <section id="local-tips" class="main-section hidden space-y-8">
+             <h2 class="text-3xl font-bold border-b-2 pb-2">在地情報</h2>
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                 <div id="local-tips-tabs" class="flex space-x-2 mb-6 border-b">
+                     <button class="tab-button active" data-tab="tab-conbini">便利商店限定</button>
+                     <button class="tab-button" data-tab="tab-ig">IG 熱點排行</button>
+                     <button class="tab-button" data-tab="tab-blogger">達人推薦</button>
+                     <button class="tab-button" data-tab="tab-practical">實用資訊</button>
+                 </div>
+                 <div id="local-tips-content">
+                     <div id="tab-conbini" class="tab-content active space-y-6">
+                        <h3 class="text-xl font-semibold">🏪 便利商店挖寶</h3>
+                        <div id="conbini-content"></div>
+                     </div>
+                     <div id="tab-ig" class="tab-content space-y-6">
+                        <h3 class="text-xl font-semibold">📸 Instagram 熱點排行 (指南參考)</h3>
+                        <div id="ig-content"></div>
+                     </div>
+                      <div id="tab-blogger" class="tab-content space-y-6">
+                         <h3 class="text-xl font-semibold">⭐ 旅遊達人推薦摘要</h3>
+                         <div id="blogger-content"></div>
+                      </div>
+                     <div id="tab-practical" class="tab-content space-y-6">
+                        <h3 class="text-xl font-semibold">🔧 實用資訊</h3>
+                        <div id="practical-content"></div>
+                     </div>
+                 </div>
+              </div>
         </section>
 
         <section id="prep" class="main-section hidden space-y-8">
@@ -205,4 +252,3 @@
     <script src="render.js"></script>
 </body>
 </html>
-
