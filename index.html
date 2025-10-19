@@ -1,67 +1,5 @@
 <!DOCTYPE html>
-<!--
 
-data.js 這份檔案所有必須完成的項目條列如下：
-
-A. 系統結構 & 核心規則 (System & Core Rules)
-結構化格式：檔案必須以 const tripData = {...} 的 JavaScript 物件格式存在，以供應用程式讀取。
-
-版本控制：必須在檔案開頭標註清晰的版本號（例如 // Version 8.8.8）。
-
-資料庫關聯性：必須建立 detailedHighlights 作為中央資料庫。每日行程 dailyData 必須透過名稱引用此資料庫的詳細資料。
-
-B. 全局資料庫 (Global Databases)
-美食任務 (missionSummary)：必須定義所有九種美食任務（燒肉、迴轉壽司、拉麵店、義大利麵、豬排飯、家庭餐廳、下午茶、速食店、B級美食）。
-
-主題攻略 (themedGuidesData)：必須完整定義所有主題攻略，包含「御守攻略」、「伴手禮情報」、「聖地巡禮」。
-
-成就系統 (awardsData)：必須完整定義所有「百選」系列（櫻花、紅葉、夕陽、名城）與「日本三大」系列（三景、名園等）。
-
-四季情報 (seasonalData)：必須完整定義春、夏、秋、冬所有季節的亮點與美食情報。
-
-C. 地點 / 住宿 強制欄位 (Location / Accommodation Mandatory Fields)
-（此規則適用於 detailedHighlights 和 accommodation 中的每一個條目）
-
-地圖連結：必須提供 mapUrl（景點/餐廳）或 url（住宿）。
-
-停車資訊：必須提供 parkingInfo（景點/餐廳）或 parking（住宿）。
-
-便利商店：住宿點必須提供 convenienceStores 列表。
-
-票務資訊：景點必須提供 ticketInfo 欄位（若免費也需註明）。
-
-專家建議：必須提供 expertRec 欄位。
-
-歷史文化：必須提供 historyCulture 欄位。
-
-行動指令 (Focus Points)：必須提供 focusPoints 欄位，且內容必須包含「行動指令」（如 "必買..."）與「拍照點」資訊。
-
-D. 每日行程規劃規則 (Daily Itinerary Rules)
-時間分析：每一天 (dailyData) 必須包含 timeAnalysis 欄位（分配 travel 與 activity 時間）。
-
-停留時間：關鍵景點必須標註 stay: '約 X 小時'。
-
-三餐標記：每一天必須明確規劃早餐、午餐、晚餐。
-
-溫泉旅館餐食：必須在入住溫泉旅館時，明確標註餐食為「已含於一泊二食方案」。
-
-每日情報：每一天必須提供 intel 和 insights 欄位（戰術TIPS與專家見解）。
-
-E. 任務追蹤 & 執行規則 (Mission Tracking & Execution)
-美食任務追蹤：當行程完成 missionSummary 中的目標時，必須在該行程點標註 【美食任務：...已達成】。
-
-成就追蹤：當行程抵達 awardsData 中的景點時，必須使用 awardHighlight 欄位標記。
-
-行李轉送：必須在 dailyData 中的特定日期，明確標註執行「行李轉送」的動作。
-
-F. 後勤 & 準備規則 (Logistics & Preparation Rules)
-準備清單：必須提供 prepList，且必須識別並標註 [關鍵任務]（如雲海計程車預約）。
-
-交通票券：必須定義 transportPass、transportSummary 和 transportTactics 區塊。
-
-G. 彈性 & 備案規則 (Flexibility & Options Rule)
-分支路線：必須為行程中的關鍵決策點（如 Day 12）提供完整且詳細的多重備選方案（options: { optionA, optionB, optionC }）。
--->
 <html lang="zh-Hant" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -267,3 +205,4 @@ G. 彈性 & 備案規則 (Flexibility & Options Rule)
     <script src="render.js"></script>
 </body>
 </html>
+
