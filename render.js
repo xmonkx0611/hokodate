@@ -146,14 +146,109 @@ document.addEventListener('DOMContentLoaded', () => {
              highlightsSection.classList.add('hidden');
         }
     }
-
     function initThemedGuides() {
         if (!tripData.themedGuidesData) return;
         const container = document.getElementById('themed-guides-container');
         const guides = tripData.themedGuidesData;
         let html = '';
 
-        // Render Amulets Guide
+        // [S] 一般化輪巡 (General-Purpose Loop)
+        // 
+        // 輪巡 `themedGuidesData` 物件中的每一個 key (例如 'amulets', 'souvenirs', 'cycling_tips' 等)
+        for (const key in guides) {
+            if (Object.hasOwnProperty.call(guides, key)) {
+                const guide = guides[key]; // 'guide' 是一個物件，包含 {title, description, items}
+
+                let itemsHtml = '<p>暫無項目資料。</p>'; // 預設的 items 內容
+
+                // 檢查 'items' 陣列是否存在且有內容
+                if (guide.items && Array.isArray(guide.items) && guide.items.length > 0) {
+                    
+                    // [!] 關鍵：檢查第一個 item 的資料結構，來決定要用哪種渲染模板
+                    const firstItem = guide.items[0];
+
+                    if (firstItem.hasOwnProperty('popular')) {
+                        // --- 模板 1: 網格卡片 (Grid Cards) ---
+                        // (用於 御守、神社 等)
+                        itemsHtml = `
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                ${guide.items.map(item => `
+                                    <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                        <h4 class="font-bold text-lg text-gray-800">${item.name} <span class="text-sm font-normal text-gray-500">- ${item.prefecture || ''}</span></h4>
+                                        <p class="mt-2 text-sm text-gray-700"><span class="font-semibold text-gray-900">人氣推薦:</span> ${item.popular || 'N/A'}</p>
+                                        ${item.special ? `<p class="mt-1 text-sm text-gray-700"><span class="font-semibold text-gray-900">特別限定:</span> ${item.special}</p>` : ''}
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                    } 
+                    else if (firstItem.hasOwnProperty('items')) {
+                        // --- 模板 2: 網格清單 (Grid Lists) ---
+                        // (用於 伴手禮、攻略提示 等)
+                        itemsHtml = `
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                                ${guide.items.map(item => `
+                                    <div>
+                                        <h4 class="font-bold text-lg text-gray-800 border-b-2 border-gray-200 pb-2">${item.name}</h4>
+                                        <ul class="list-disc list-inside mt-3 space-y-2 text-gray-700">
+                                            ${item.items.map(s => `<li>${s}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                    } 
+                    else if (firstItem.hasOwnProperty('locations')) {
+                        // --- 模板 3: 表格 (Table Rows) ---
+                        // (用於 聖地巡禮 等)
+                        // [!] 假設的表格標題，若需通用化，標題也需寫入 data.js
+                        itemsHtml = `
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left">
+                                    <thead>
+                                        <tr class="bg-gray-100">
+                                            <th class="p-3 font-semibold">名稱/作品</th>
+                                            <th class="p-3 font-semibold">相關地點</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    ${guide.items.map(item => `
+                                        <tr class="border-b">
+                                            <td class="p-3 font-semibold align-top">${item.name}</td>
+                                            <td class="p-3 align-top">${(item.locations || []).join('、 ')}</td>
+                                        </tr>
+                                    `).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
+                        `;
+                    } 
+                    else {
+                        // 備用模板 (如果結構不符)
+                        itemsHtml = '<p>此攻略的項目格式無法識別。</p>';
+                    }
+                }
+
+                // 組合通用的外框 (標題 + 描述 + items內容)
+                html += `
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-semibold mb-2">${guide.title}</h3>
+                        <p class="text-gray-600 mb-6">${guide.description}</p>
+                        ${itemsHtml}
+                    </div>
+                `;
+            }
+        }
+        // [E] 一般化輪巡結束
+
+        container.innerHTML = html || '<p>暫無主題攻略資料。</p>';
+    }
+/*
+    function initThemedGuides() {
+        if (!tripData.themedGuidesData) return;
+        const container = document.getElementById('themed-guides-container');
+        const guides = tripData.themedGuidesData;
+        let html = '';
         if (guides.amulets) {
             html += `
                 <div class="bg-white p-6 rounded-lg shadow-lg">
@@ -222,8 +317,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         container.innerHTML = html || '<p>暫無主題攻略資料。</p>';
     }
-
-    // --- NEW: Render Food Guide ---
+*/
+// --- FINALIZED v2: Render Food Guide (Using Combined Emoji + Name Map) ---
     function initFoodGuide() {
         const container = document.getElementById('food-guide-container');
         if (!tripData.foodGuide || Object.keys(tripData.foodGuide).length === 0) {
@@ -232,16 +327,57 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         let html = '';
-        const categoryMap = {
-            ramen: '🍜 拉麵', burger: '🍔 漢堡', sushi: '🍣 壽司',
-            yakiniku: '🥩 燒肉/成吉思汗', western: '🍛 洋食/咖哩', sweets: '🍰 甜點',
-            b_gourmet: '🍱 B級美食'
-        };
 
-        for (const [category, title] of Object.entries(categoryMap)) {
-            if (tripData.foodGuide[category] && tripData.foodGuide[category].length > 0) {
+        // [S] 步驟 1: 重新定義 emojiMap，包含 Emoji 和中文名稱
+        const emojiMap = {
+            yakiniku: '🥩 燒肉',
+            kaitenSushi: '🍣 迴轉壽司',
+            sushi: '🍣 壽司', // 保留兼容
+            ramen: '🍜 拉麵',
+            pasta: '🍝 義大利麵',
+            tonkatsu: '🍛 豬排飯', // 暫用咖哩圖示 + 名稱
+            familyRestaurant: '🍽️ 家庭餐廳',
+            afternoonTea: '☕ 下午茶',
+            fastFood: '🍔 速食店', // 使用漢堡圖示 + 名稱
+            burger: '🍔 漢堡', // 保留兼容
+            bGradeGourmet: '🍱 B級美食',
+            b_gourmet: '🍱 B級美食', // 保留兼容
+            okinawa_soba: '🍜 沖繩麵', // 使用拉麵圖示 + 名稱
+            cafe: '☕ 咖啡廳', // 使用咖啡圖示 + 名稱
+            izakaya: '🏮 居酒屋',
+            western: '🍛 洋食/咖哩', // 保留兼容
+            sweets: '🍰 甜點', // 保留兼容
+            // 可以繼續添加更多...
+            default_emoji: '🍴' // 預設圖示 (用於 emojiMap 中找不到 category 時)
+        };
+        // [E] emojiMap 定義結束
+
+        // [S] 迭代 foodGuide 的所有 key
+        for (const category in tripData.foodGuide) {
+            if (
+                Object.hasOwnProperty.call(tripData.foodGuide, category) &&
+                tripData.foodGuide[category] &&
+                tripData.foodGuide[category].length > 0
+            ) {
+                // [S] 步驟 2: 調整標題獲取邏輯
+                let title = '';
+                // 優先從 emojiMap 獲取完整標題 (Emoji + Name)
+                if (emojiMap.hasOwnProperty(category)) {
+                    title = emojiMap[category];
+                } else {
+                    // emojiMap 中沒有，嘗試從 missionSummary 獲取 description
+                    let titleDescription = category; // 預設標題為 category key
+                    if (tripData.missionSummary && tripData.missionSummary.hasOwnProperty(category)) {
+                        titleDescription = tripData.missionSummary[category].description || category;
+                    }
+                    // 加上預設 Emoji
+                    title = `${emojiMap.default_emoji} ${titleDescription}`;
+                }
+                // [E] 標題獲取邏輯結束
+
+                // 使用與之前相同的 HTML 模板來渲染手風琴項目
                 html += `
-                    <div class="food-category-accordion border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="food-category-accordion border border-gray-200 rounded-lg overflow-hidden mb-4">
                         <button class="accordion-button bg-gray-100 hover:bg-gray-200 w-full text-left p-4 font-semibold text-lg flex justify-between items-center transition-colors">
                             <span>${title}</span>
                             <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -263,24 +399,32 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 `;
             }
-        }
-        container.innerHTML = html;
+        } // [E] 迴圈結束
 
-        // Add Accordion Logic
+        container.innerHTML = html || '<p>暫無美食指南資料。</p>';
+
+        // 手風琴的點擊事件邏輯保持不變
         container.querySelectorAll('.accordion-button').forEach(button => {
             button.addEventListener('click', () => {
                 const content = button.nextElementSibling;
                 const icon = button.querySelector('svg');
-                if (content.style.maxHeight && content.style.maxHeight !== '0px') {
-                    content.style.maxHeight = '0px';
-                    icon.style.transform = 'rotate(0deg)';
+                if (!content) return;
+
+                // 修正：確保切換時平滑展開/收合
+                const isCurrentlyOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+                if (isCurrentlyOpen) {
+                    content.style.maxHeight = '0px'; // 收合
+                    if (icon) icon.style.transform = 'rotate(0deg)';
                 } else {
-                    content.style.maxHeight = content.scrollHeight + 'px';
-                    icon.style.transform = 'rotate(180deg)';
+                    content.style.maxHeight = content.scrollHeight + 'px'; // 展開
+                    if (icon) icon.style.transform = 'rotate(180deg)';
                 }
             });
         });
     }
+
+
 
     // --- NEW: Render Shopping Guide ---
     function initShoppingGuide() {
@@ -400,29 +544,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const accommodationSection = document.getElementById('accommodation-section');
         if (tripData.accommodation && tripData.accommodation.length > 0) {
             const accommodationList = document.getElementById('accommodation-list');
-            // Modified to show single accommodation clearly
-            const item = tripData.accommodation[0]; // Assuming single hotel stay
-             accommodationList.innerHTML = `
-                <div class="border border-gray-300 rounded-lg p-6 shadow-md bg-blue-50">
-                    <h4 class="text-xl font-bold mb-2"><a href="${item.url}" target="_blank" class="text-blue-700 hover:underline">${item.name}</a></h4>
-                    <p class="text-md text-gray-600 mb-4">入住天數: Day ${item.day}</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+            accommodationList.innerHTML = tripData.accommodation.map(item => `
+                <div class="border border-gray-200 rounded-lg p-4 shadow-sm">
+                    <h4 class="text-lg font-bold"><a href="${item.url}" target="_blank" class="text-blue-600 hover:underline">${item.name}</a></h4>
+                    <p class="text-sm text-gray-500">Day ${item.day} | ${item.city}</p>
+                    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                         <div>
                             <p class="font-semibold text-gray-800 mb-1">🅿️ 停車資訊</p>
-                            <p class="text-gray-700">${item.parking}</p>
+                            <p class="text-gray-600">${item.parking}</p>
                         </div>
                         <div>
                             <p class="font-semibold text-gray-800 mb-1">🏪 周邊便利商店</p>
-                            <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <ul class="list-disc list-inside text-gray-600">
                                 ${item.convenienceStores.map(store => `<li><span class="font-semibold">${store.brand}:</span> ${store.name}</li>`).join('')}
                             </ul>
                         </div>
                     </div>
                 </div>
-            `;
+            `).join('');
             accommodationSection.classList.remove('hidden');
-        } else {
-             accommodationSection.classList.add('hidden');
         }
 
         // Render Transport Pass Details --- HEAVILY MODIFIED ---
